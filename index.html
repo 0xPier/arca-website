@@ -1127,10 +1127,16 @@
       border-radius: 16px;
     }
 
+    .contact-heading {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+
     .contact-layout {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 22px;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
       align-items: start;
     }
 
@@ -1787,12 +1793,19 @@
 
     <section class="section reveal" id="contatti" aria-labelledby="contatti-title">
       <div class="container">
+        <div class="contact-heading">
+          <h2 class="section-title" id="contatti-title">Iniziamo con una chiamata gratuita</h2>
+          <p class="section-intro">30 minuti. Nessun impegno. Valutiamo insieme se Arca è adatta al vostro studio. Se c'è coerenza, ricevete una proposta entro 24 ore.</p>
+        </div>
+
         <div class="contact-layout">
-          <div>
-            <h2 class="section-title" id="contatti-title">Iniziamo con una chiamata gratuita</h2>
-            <p class="section-intro">30 minuti. Nessun impegno. Valutiamo insieme se Arca è adatta al vostro studio. Se c'è coerenza, ricevete una proposta entro 24 ore.</p>
+          <!-- LEFT: Calendly embed -->
+          <div class="contact-calendly">
+            <div class="calendly-inline-widget" data-url="https://calendly.com/arcalocalai/30min?hide_gdpr_banner=1&background_color=f5f1ea&text_color=172235&primary_color=c9a84c" style="min-width:320px;height:700px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
           </div>
 
+          <!-- RIGHT: Contact form -->
           <div class="card contact-card">
             <!-- Per passare a Formspree, basta cambiare l'action in una riga: action="https://formspree.io/f/XXXXXXX" -->
             <form action="https://formspree.io/f/mreodabk" method="POST">
@@ -1838,10 +1851,6 @@
             <p class="contact-meta">Oppure scriveteci direttamente: <a href="mailto:arcalocalai@gmail.com">arcalocalai@gmail.com</a> · WhatsApp <a href="https://wa.me/393425680607">+39 342 568 0607</a> · <a href="https://calendly.com/arcalocalai/30min">Prenota online</a></p>
           </div>
         </div>
-
-        <!-- Calendly inline widget -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/arcalocalai/30min?hide_gdpr_banner=1&background_color=f5f1ea&text_color=172235&primary_color=c9a84c" style="min-width:320px;height:700px;margin-top:32px;"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </div>
     </section>
   </main>
