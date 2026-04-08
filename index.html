@@ -560,80 +560,9 @@
     }
 
     .mini-icon {
-      position: relative;
       width: 18px;
       height: 18px;
       flex: 0 0 18px;
-    }
-
-    .mini-icon.lock {
-      border: 1.5px solid var(--accent);
-      border-radius: 5px;
-    }
-
-    .mini-icon.lock::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: -7px;
-      width: 10px;
-      height: 8px;
-      border: 1.5px solid var(--accent);
-      border-bottom: 0;
-      border-radius: 8px 8px 0 0;
-      transform: translateX(-50%);
-    }
-
-    .mini-icon.server {
-      border: 1.5px solid var(--accent);
-      border-radius: 4px;
-    }
-
-    .mini-icon.server::before,
-    .mini-icon.server::after {
-      content: "";
-      position: absolute;
-      left: 2px;
-      right: 2px;
-      height: 1.5px;
-      background: var(--accent);
-      border-radius: 999px;
-    }
-
-    .mini-icon.server::before {
-      top: 5px;
-      box-shadow: 0 4px 0 var(--accent);
-    }
-
-    .mini-icon.server::after {
-      content: "";
-      width: 7px;
-      height: 7px;
-      right: auto;
-      left: auto;
-      top: 5px;
-      border-radius: 50%;
-      border: 1.5px solid var(--accent);
-      background: transparent;
-      transform: translateX(4px);
-    }
-
-    .mini-icon.check {
-      border: 1.5px solid var(--accent);
-      border-radius: 50%;
-    }
-
-    .mini-icon.check::before {
-      content: "";
-      position: absolute;
-      left: 4px;
-      top: 7px;
-      width: 4px;
-      height: 1.5px;
-      background: var(--accent);
-      transform: rotate(45deg);
-      transform-origin: left center;
-      box-shadow: 3px -3px 0 0 var(--accent);
     }
 
     .steps {
@@ -941,70 +870,8 @@
       border-radius: 16px;
       background: rgba(201, 168, 76, 0.08);
       border: 1px solid rgba(201, 168, 76, 0.18);
-      position: relative;
       margin-bottom: 18px;
-    }
-
-    .persona-icon::before,
-    .persona-icon::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      margin: auto;
-      background: var(--accent);
-    }
-
-    .persona-icon.legal::before {
-      width: 18px;
-      height: 2px;
-      top: 17px;
-      box-shadow: 0 6px 0 var(--accent), 0 12px 0 var(--accent);
-    }
-
-    .persona-icon.legal::after {
-      width: 16px;
-      height: 16px;
-      top: 16px;
-      left: 16px;
-      background: transparent;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%);
-    }
-
-    .persona-icon.notary::before {
-      width: 18px;
-      height: 24px;
-      border: 2px solid var(--accent);
-      border-radius: 4px;
-      background: transparent;
-    }
-
-    .persona-icon.notary::after {
-      width: 10px;
-      height: 2px;
-      top: 25px;
-      box-shadow: 0 -6px 0 var(--accent), 0 -12px 0 var(--accent);
-    }
-
-    .persona-icon.accounting::before {
-      width: 18px;
-      height: 14px;
-      top: 16px;
-      background: transparent;
-      border-bottom: 2px solid var(--accent);
-      box-shadow: 0 8px 0 0 transparent;
-    }
-
-    .persona-icon.accounting::after {
-      width: 4px;
-      height: 22px;
-      left: 18px;
-      top: 13px;
-      box-shadow:
-        6px 4px 0 0 var(--accent),
-        -6px 8px 0 0 var(--accent);
-      background: var(--accent);
+      padding: 6px;
     }
 
     .persona-title {
@@ -1067,7 +934,8 @@
     }
 
     .stat-icon {
-      font-size: 2rem;
+      width: 40px;
+      height: 40px;
       margin-bottom: 12px;
       display: block;
     }
@@ -1095,7 +963,8 @@
     }
 
     .capability-icon {
-      font-size: 2rem;
+      width: 40px;
+      height: 40px;
       margin-bottom: 12px;
       display: block;
     }
@@ -1586,9 +1455,9 @@
         <div class="trust-panel">
           <p class="trust-text" id="trust-title">I vostri documenti restano in studio. Nessun dato su server esterni. Nessun vincolo a piattaforme terze.</p>
           <div class="trust-items" aria-label="Punti di fiducia">
-            <div class="trust-item"><span class="mini-icon lock" aria-hidden="true"></span><span>Dati protetti in studio</span></div>
-            <div class="trust-item"><span class="mini-icon server" aria-hidden="true"></span><span>Nessun server esterno</span></div>
-            <div class="trust-item"><span class="mini-icon check" aria-hidden="true"></span><span>Controllo totale</span></div>
+            <div class="trust-item"><svg class="mini-icon" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><rect x="3" y="8" width="12" height="9" rx="2" fill="none" stroke="#C9A84C" stroke-width="1.5"/><path d="M6 8V5.5a3 3 0 0 1 6 0V8" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="12.5" r="1.2" fill="#C9A84C"/></svg><span>Dati protetti in studio</span></div>
+            <div class="trust-item"><svg class="mini-icon" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><rect x="3" y="3" width="12" height="12" rx="2" fill="none" stroke="#C9A84C" stroke-width="1.5"/><line x1="3" y1="7.5" x2="15" y2="7.5" stroke="#C9A84C" stroke-width="1.5"/><line x1="3" y1="11.5" x2="15" y2="11.5" stroke="#C9A84C" stroke-width="1.5"/><circle cx="5.5" cy="5.2" r="0.8" fill="#C9A84C"/></svg><span>Nessun server esterno</span></div>
+            <div class="trust-item"><svg class="mini-icon" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="7.5" fill="none" stroke="#C9A84C" stroke-width="1.5"/><path d="M5.5 9.2l2.2 2.2 4.8-4.8" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Controllo totale</span></div>
           </div>
         </div>
       </div>
@@ -1708,19 +1577,19 @@
         <h2 class="section-title" id="per-chi-title">Per chi è Arca</h2>
         <div class="persona-grid">
           <article class="card persona-card">
-            <div class="persona-icon legal" aria-hidden="true"></div>
+            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="12" y="14" width="24" height="2" rx="1" fill="#C9A84C"/><rect x="12" y="21" width="24" height="2" rx="1" fill="#C9A84C"/><rect x="12" y="28" width="24" height="2" rx="1" fill="#C9A84C"/><circle cx="32" cy="32" r="8" fill="none" stroke="#C9A84C" stroke-width="2"/><path d="M28 32 A8 8 0 0 1 32 24" fill="none" stroke="#C9A84C" stroke-width="2"/></svg>
             <h3 class="persona-title">Avvocati e studi legali</h3>
             <p class="persona-desc">Bozze di atti, riassunti di contratti, gestione documentale. Il vostro agente apprende le procedure interne e lavora in coerenza con esse.</p>
           </article>
 
           <article class="card persona-card">
-            <div class="persona-icon notary" aria-hidden="true"></div>
+            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="15" y="10" width="18" height="26" rx="3" fill="none" stroke="#C9A84C" stroke-width="2"/><line x1="20" y1="18" x2="28" y2="18" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="20" y1="23" x2="28" y2="23" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="20" y1="28" x2="25" y2="28" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
             <h3 class="persona-title">Notai</h3>
             <p class="persona-desc">Preparazione di atti, comunicazioni standard e ricerche interne. Più rapidità, con la massima riservatezza.</p>
           </article>
 
           <article class="card persona-card">
-            <div class="persona-icon accounting" aria-hidden="true"></div>
+            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="12" y="16" width="24" height="20" rx="3" fill="none" stroke="#C9A84C" stroke-width="2"/><line x1="12" y1="24" x2="36" y2="24" stroke="#C9A84C" stroke-width="2"/><line x1="20" y1="16" x2="20" y2="36" stroke="#C9A84C" stroke-width="1.5"/><rect x="25" y="28" width="7" height="4" rx="1" fill="none" stroke="#C9A84C" stroke-width="1.5"/></svg>
             <h3 class="persona-title">Commercialisti</h3>
             <p class="persona-desc">Analisi di fatture, scadenze fiscali e bozze di email ai clienti. Il lavoro ripetitivo diventa automatico.</p>
           </article>
@@ -1738,17 +1607,17 @@
 
           <div class="stats-grid">
             <article class="card stat">
-              <span class="stat-icon" aria-hidden="true">⏱</span>
+              <svg class="stat-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="#C9A84C" stroke-width="1.8"/><path d="M12 7v5l3 3" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="3" x2="12" y2="5" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/></svg>
               <span class="stat-value">8 ore/settimana</span>
               <p class="stat-label">il tempo medio recuperato eliminando attività ripetitive</p>
             </article>
             <article class="card stat">
-              <span class="stat-icon" aria-hidden="true">📈</span>
+              <svg class="stat-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 17l5-5 4 4 6-8 3 3" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span class="stat-value">1–2 settimane</span>
               <p class="stat-label">per recuperare l'investimento iniziale</p>
             </article>
             <article class="card stat">
-              <span class="stat-icon" aria-hidden="true">🔒</span>
+              <svg class="stat-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#C9A84C" stroke-width="1.8"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1.5" fill="#C9A84C"/></svg>
               <span class="stat-value">Zero abbonamenti AI</span>
               <p class="stat-label">con Arca Local — nessun costo ricorrente per l'AI, nessun dato fuori studio</p>
             </article>
@@ -1756,32 +1625,32 @@
 
           <div class="capabilities-grid">
             <article class="capability-card">
-              <span class="capability-icon" aria-hidden="true">📝</span>
+              <svg class="capability-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z" fill="none" stroke="#C9A84C" stroke-width="1.8"/><path d="M14 3v6h6" fill="none" stroke="#C9A84C" stroke-width="1.8"/><line x1="8" y1="13" x2="16" y2="13" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="17" x2="13" y2="17" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
               <h3 class="capability-title">Redazione documenti</h3>
               <p class="capability-desc">Bozze di contratti, lettere, atti e comunicazioni partendo dai vostri template e dai dati del cliente. Pronti per la vostra revisione in pochi secondi.</p>
             </article>
             <article class="capability-card">
-              <span class="capability-icon" aria-hidden="true">🔍</span>
+              <svg class="capability-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="7" fill="none" stroke="#C9A84C" stroke-width="1.8"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/></svg>
               <h3 class="capability-title">Ricerca e analisi</h3>
               <p class="capability-desc">Ricerca nella vostra base documentale interna: giurisprudenza, normativa, procedure. Risposte precise con citazioni delle fonti.</p>
             </article>
             <article class="capability-card">
-              <span class="capability-icon" aria-hidden="true">📧</span>
+              <svg class="capability-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="#C9A84C" stroke-width="1.8"/><path d="M2 7l10 6 10-6" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linejoin="round"/></svg>
               <h3 class="capability-title">Gestione comunicazioni</h3>
               <p class="capability-desc">Lettura e bozza di email, gestione del calendario, promemoria per scadenze. Il lavoro amministrativo quotidiano, automatizzato.</p>
             </article>
             <article class="capability-card">
-              <span class="capability-icon" aria-hidden="true">💰</span>
+              <svg class="capability-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="#C9A84C" stroke-width="1.8"/><path d="M12 7v10M9 9.5c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2s-.9 2-2 2h-2c-1.1 0-2 .9-2 2s.9 2 2 2h2c1.1 0 2-.9 2-2" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/></svg>
               <h3 class="capability-title">Fatture e scadenze</h3>
               <p class="capability-desc">Analisi automatica di fatture e documenti fiscali. Tracciamento pagamenti, segnalazione scadenze, riepiloghi periodici.</p>
             </article>
             <article class="capability-card">
-              <span class="capability-icon" aria-hidden="true">👋</span>
+              <svg class="capability-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4c1.5-2 4-2 5.5.5S19 9 17.5 11L12 19l-5.5-8C5 9 4.5 6.5 6.5 4.5S10.5 2 12 4z" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linejoin="round"/></svg>
               <h3 class="capability-title">Accoglienza clienti</h3>
               <p class="capability-desc">Raccolta informazioni da nuovi clienti, gestione appuntamenti, preparazione documenti per il primo incontro.</p>
             </article>
             <article class="capability-card">
-              <span class="capability-icon" aria-hidden="true">✅</span>
+              <svg class="capability-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="#C9A84C" stroke-width="1.8"/><path d="M8 12l3 3 5-6" fill="none" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <h3 class="capability-title">Conformità e adempimenti</h3>
               <p class="capability-desc">Supporto per informative privacy, verifiche antiriciclaggio, documentazione per compliance normativa.</p>
             </article>
