@@ -758,36 +758,85 @@
       font-size: 0.96rem;
     }
 
-    .persona-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .persona-card {
-      padding: 24px;
-    }
-
-    .persona-icon {
-      width: 48px;
-      height: 48px;
+    .persona-dropdown {
+      max-width: 640px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
       border-radius: 16px;
-      background: rgba(201, 168, 76, 0.08);
-      border: 1px solid rgba(201, 168, 76, 0.18);
-      margin-bottom: 18px;
-      padding: 6px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .persona-title {
-      font-size: 1.35rem;
-      margin-bottom: 12px;
+    .persona-dropdown[open] {
+      border-color: var(--border-strong);
     }
 
-    .persona-desc {
-      margin: 0;
+    .persona-dropdown-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text);
+      list-style: none;
+      transition: background 0.2s ease;
+    }
+
+    .persona-dropdown-trigger::-webkit-details-marker {
+      display: none;
+    }
+
+    .persona-dropdown-trigger:hover {
+      background: rgba(201, 168, 76, 0.06);
+    }
+
+    .persona-dropdown-chevron {
+      flex: 0 0 16px;
+      color: var(--accent);
+      transition: transform 0.25s ease;
+    }
+
+    .persona-dropdown[open] .persona-dropdown-chevron {
+      transform: rotate(180deg);
+    }
+
+    .persona-dropdown-body {
+      border-top: 1px solid var(--border);
+      padding: 8px 0;
+    }
+
+    .persona-list {
+      display: grid;
+    }
+
+    .persona-list-item {
+      display: grid;
+      gap: 4px;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(23, 34, 53, 0.05);
+      transition: background 0.15s ease;
+    }
+
+    .persona-list-item:last-child {
+      border-bottom: 0;
+    }
+
+    .persona-list-item:hover {
+      background: rgba(201, 168, 76, 0.04);
+    }
+
+    .persona-list-item strong {
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .persona-list-item span {
       color: var(--muted);
-      line-height: 1.8;
-      min-height: 5.4em;
+      font-size: 0.9375rem;
+      line-height: 1.65;
     }
 
     .roi-grid {
@@ -1073,7 +1122,6 @@
     @media (max-width: 900px) {
       .steps-grid,
       .cards-grid,
-      .persona-grid,
       .stats-grid,
       .contact-layout,
       .footer-top,
@@ -1222,7 +1270,6 @@
 
       .trust-panel,
       .card,
-      .persona-card,
       .contact-card,
       .stat {
         padding: 22px;
@@ -1392,43 +1439,6 @@
           </article>
         </div>
         <p class="note">Molti professionisti iniziano con Arca Cloud e passano ad Arca Local quando desiderano maggiore autonomia e riservatezza totale.</p>
-        <details class="pricing-details">
-          <summary>
-            <span>Listino indicativo</span>
-            <span class="pricing-summary-note">
-              <span class="pricing-summary-open">apri per vedere i pacchetti</span>
-              <span class="pricing-summary-close">comprimi i pacchetti</span>
-            </span>
-          </summary>
-          <div class="pricing-details-body">
-            <div class="pricing-grid">
-              <article class="pricing-item">
-                <div class="pricing-item-header">
-                  <span class="pricing-index">01</span>
-                  <strong>Arca Local</strong>
-                </div>
-                <span class="pricing-price">€7.500</span>
-                <p>Configurazione locale completa, consigliata come scelta predefinita. Hardware non incluso.</p>
-              </article>
-              <article class="pricing-item">
-                <div class="pricing-item-header">
-                  <span class="pricing-index">02</span>
-                  <strong>Arca Cloud</strong>
-                </div>
-                <span class="pricing-price">€4.000</span>
-                <p>Setup, formazione e configurazione. Nessun hardware richiesto. Costo abbonamento AI a carico del cliente.</p>
-              </article>
-              <article class="pricing-item">
-                <div class="pricing-item-header">
-                  <span class="pricing-index">03</span>
-                  <strong>Arca Care</strong>
-                </div>
-                <span class="pricing-price">€300/mese</span>
-                <p>Supporto continuo, aggiornamenti e nuove automazioni.</p>
-              </article>
-            </div>
-          </div>
-        </details>
       </div>
     </section>
 
@@ -1436,62 +1446,52 @@
       <div class="container">
         <h2 class="section-title" id="per-chi-title">Per chi è Arca</h2>
         <p class="section-intro center">Se la tua attività produce documenti, email, scadenze o dati da analizzare, Arca si adatta al tuo lavoro.</p>
-        <div class="persona-grid">
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="12" y="14" width="24" height="2" rx="1" fill="#C9A84C"/><rect x="12" y="21" width="24" height="2" rx="1" fill="#C9A84C"/><rect x="12" y="28" width="24" height="2" rx="1" fill="#C9A84C"/><circle cx="32" cy="32" r="8" fill="none" stroke="#C9A84C" stroke-width="2"/><path d="M28 32 A8 8 0 0 1 32 24" fill="none" stroke="#C9A84C" stroke-width="2"/></svg>
-            <h3 class="persona-title">Avvocati e studi legali</h3>
-            <p class="persona-desc">Bozze di atti, riassunti di contratti, gestione documentale. Il vostro assistente apprende le procedure interne e lavora in coerenza con esse.</p>
-          </article>
-
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="15" y="10" width="18" height="26" rx="3" fill="none" stroke="#C9A84C" stroke-width="2"/><line x1="20" y1="18" x2="28" y2="18" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="20" y1="23" x2="28" y2="23" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="20" y1="28" x2="25" y2="28" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <h3 class="persona-title">Notai</h3>
-            <p class="persona-desc">Preparazione di atti, comunicazioni standard e ricerche interne. Più rapidità, con la massima riservatezza.</p>
-          </article>
-
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="12" y="16" width="24" height="20" rx="3" fill="none" stroke="#C9A84C" stroke-width="2"/><line x1="12" y1="24" x2="36" y2="24" stroke="#C9A84C" stroke-width="2"/><line x1="20" y1="16" x2="20" y2="36" stroke="#C9A84C" stroke-width="1.5"/><rect x="25" y="28" width="7" height="4" rx="1" fill="none" stroke="#C9A84C" stroke-width="1.5"/></svg>
-            <h3 class="persona-title">Commercialisti</h3>
-            <p class="persona-desc">Analisi di fatture, scadenze fiscali e bozze di email ai clienti. Il lavoro ripetitivo diventa automatico.</p>
-          </article>
-
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 8L8 20v20h32V20L24 8z" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linejoin="round"/><rect x="18" y="26" width="12" height="14" fill="none" stroke="#C9A84C" stroke-width="1.5"/></svg>
-            <h3 class="persona-title">Architetti e ingegneri</h3>
-            <p class="persona-desc">Relazioni tecniche, computi metrici, presentazioni per clienti e comuni. Il tuo assistente prepara tutto mentre tu progetti.</p>
-          </article>
-
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="18" r="8" fill="none" stroke="#C9A84C" stroke-width="2"/><path d="M10 40c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="none" stroke="#C9A84C" stroke-width="2"/></svg>
-            <h3 class="persona-title">Consulenti e agenzie</h3>
-            <p class="persona-desc">Ricerche di mercato, report, email ai clienti, gestione progetti. L'assistente che tiene tutto in ordine.</p>
-          </article>
-
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 12c-2 0-3 1-3 3v6c0 2 1 3 3 3s3-1 3-3v-6c0-2-1-3-3-3z" fill="none" stroke="#C9A84C" stroke-width="2"/><circle cx="24" cy="28" r="2" fill="#C9A84C"/><path d="M16 40h16M20 36h8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <h3 class="persona-title">Medici e professionisti sanitari</h3>
-            <p class="persona-desc">Gestione appuntamenti, note cliniche, corrispondenza con pazienti e strutture. Riservatezza garantita, sempre locale.</p>
-          </article>
-
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="10" fill="none" stroke="#C9A84C" stroke-width="2"/><path d="M20 24l3 3 5-6" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3 class="persona-title">Farmacisti</h3>
-            <p class="persona-desc">Gestione inventario, scadenze farmaci, corrispondenza con fornitori e ASL. Conformità normativa sempre aggiornata.</p>
-          </article>
-
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="10" y="8" width="28" height="32" rx="3" fill="none" stroke="#C9A84C" stroke-width="2"/><line x1="16" y1="16" x2="32" y2="16" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="22" x2="32" y2="22" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="28" x2="26" y2="28" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <h3 class="persona-title">Geometri e periti</h3>
-            <p class="persona-desc">Relazioni di stima, pratiche edilizie, computi metrici, comunicazioni con enti pubblici. Tutto automatizzato.</p>
-          </article>
-
-          <article class="card persona-card">
-            <svg class="persona-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M14 12h20v24H14z" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linejoin="round"/><line x1="20" y1="20" x2="28" y2="20" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><line x1="20" y1="26" x2="28" y2="26" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <h3 class="persona-title">Psicologi e psicoterapeuti</h3>
-            <p class="persona-desc">Gestione appuntamenti, note anonimizzate, fatturazione, corrispondenza con assicurazioni e centri clinici.</p>
-          </article>
-
-        </div>
+        <details class="persona-dropdown">
+          <summary class="persona-dropdown-trigger">
+            <span>Scopri per quali professionisti</span>
+            <svg class="persona-dropdown-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="persona-dropdown-body">
+            <div class="persona-list">
+              <div class="persona-list-item">
+                <strong>Avvocati e studi legali</strong>
+                <span>Bozze di atti, riassunti di contratti, gestione documentale. Il vostro assistente apprende le procedure interne e lavora in coerenza con esse.</span>
+              </div>
+              <div class="persona-list-item">
+                <strong>Notai</strong>
+                <span>Preparazione di atti, comunicazioni standard e ricerche interne. Più rapidità, con la massima riservatezza.</span>
+              </div>
+              <div class="persona-list-item">
+                <strong>Commercialisti</strong>
+                <span>Analisi di fatture, scadenze fiscali e bozze di email ai clienti. Il lavoro ripetitivo diventa automatico.</span>
+              </div>
+              <div class="persona-list-item">
+                <strong>Architetti e ingegneri</strong>
+                <span>Relazioni tecniche, computi metrici, presentazioni per clienti e comuni. Il tuo assistente prepara tutto mentre tu progetti.</span>
+              </div>
+              <div class="persona-list-item">
+                <strong>Consulenti e agenzie</strong>
+                <span>Ricerche di mercato, report, email ai clienti, gestione progetti. L'assistente che tiene tutto in ordine.</span>
+              </div>
+              <div class="persona-list-item">
+                <strong>Medici e professionisti sanitari</strong>
+                <span>Gestione appuntamenti, note cliniche, corrispondenza con pazienti e strutture. Riservatezza garantita, sempre locale.</span>
+              </div>
+              <div class="persona-list-item">
+                <strong>Farmacisti</strong>
+                <span>Gestione inventario, scadenze farmaci, corrispondenza con fornitori e ASL. Conformità normativa sempre aggiornata.</span>
+              </div>
+              <div class="persona-list-item">
+                <strong>Geometri e periti</strong>
+                <span>Relazioni di stima, pratiche edilizie, computi metrici, comunicazioni con enti pubblici. Tutto automatizzato.</span>
+              </div>
+              <div class="persona-list-item">
+                <strong>Psicologi e psicoterapeuti</strong>
+                <span>Gestione appuntamenti, note anonimizzate, fatturazione, corrispondenza con assicurazioni e centri clinici.</span>
+              </div>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
 
