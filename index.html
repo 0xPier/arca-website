@@ -151,11 +151,11 @@
     /* Section label */
     .label {
       display: inline-block;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: #D4B55A;
       margin-bottom: 12px;
     }
 
@@ -414,8 +414,9 @@
     .step-num {
       font-family: var(--font-heading);
       font-size: 2.5rem;
+      font-weight: 300;
       color: var(--gold);
-      opacity: 0.6;
+      opacity: 0.5;
       margin-bottom: 16px;
       display: block;
     }
@@ -427,6 +428,8 @@
     .step-card p {
       color: var(--text-muted);
       font-size: 0.95rem;
+      max-width: 65ch;
+      margin: 0 auto;
     }
 
     /* ===================== PACKAGES ===================== */
@@ -576,6 +579,7 @@
 
     .why-card {
       padding: 32px;
+      border-left: 3px solid var(--gold);
     }
 
     .why-card h3 {
@@ -801,6 +805,45 @@
     }
 
     /* ===================== RESPONSIVE ===================== */
+    /* Anchor scroll offset */
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+
+    /* SVG icon styles */
+    .pain-icon svg,
+    .usecase-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--gold);
+    }
+
+    /* Nav active state */
+    .header-nav a.active {
+      color: var(--text);
+    }
+
+    /* Secondary form toggle */
+    .form-toggle {
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 12px;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      transition: color 0.2s;
+    }
+    .form-toggle:hover {
+      color: var(--gold);
+    }
+    .form-collapsible {
+      display: none;
+    }
+    .form-collapsible.open {
+      display: block;
+    }
+
     @media (max-width: 768px) {
       .header-nav {
         display: none;
@@ -817,6 +860,10 @@
       .hero {
         padding-top: 110px;
         padding-bottom: 60px;
+      }
+
+      .hero-content {
+        padding: 0 24px;
       }
 
       .hero-buttons {
@@ -839,6 +886,10 @@
         grid-template-columns: 1fr;
         max-width: 400px;
         margin: 0 auto;
+      }
+
+      .package-card.featured {
+        order: -1;
       }
 
       .usecases-grid {
@@ -913,7 +964,7 @@
     <div class="container hero-content">
       <span class="hero-eyebrow reveal">L'AI configurata per il tuo studio.</span>
       <h1 class="reveal">Agenti autonomi che gestiscono il tuo studio creativo.</h1>
-      <p class="hero-sub reveal">Installata, formata, operativa dal primo giorno. L'AI che gestisce email, brief, proposte e scadenze — esattamente come li gestiresti tu.</p>
+        <p class="hero-sub reveal">Configurata sul tuo studio. Operativa dal primo giorno. L'AI che gestisce email, brief, proposte e scadenze — esattamente come li gestiresti tu.</p>
       <div class="hero-buttons reveal">
         <a href="https://calendly.com/arcalocalai/30min" class="btn btn-primary">Prenota la consulenza gratuita</a>
         <a href="#come-funziona" class="btn btn-secondary">Scopri come funziona</a>
@@ -931,24 +982,24 @@
       </div>
       <div class="pain-grid">
         <div class="card pain-card reveal">
-          <div class="pain-icon">📧</div>
+          <div class="pain-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
           <h3>Email che si accumulano</h3>
           <p>Clienti che aspettano risposte, richieste perse, inbox che diventa un secondo lavoro a tempo pieno.</p>
         </div>
         <div class="card pain-card reveal">
-          <div class="pain-icon">📝</div>
+          <div class="pain-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div>
           <h3>Brief vaghi, infinite revisioni</h3>
           <p>Informazioni incomplete che generano ambiguità, riunioni extra e cicli di correzione infiniti.</p>
         </div>
         <div class="card pain-card reveal">
-          <div class="pain-icon">⏱️</div>
-          <h3>Proposte che ore ogni volta</h3>
+          <div class="pain-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>Proposte che costano ore ogni volta</h3>
           <p>Scrivere, formattare, personalizzare. Ogni proposta è un progetto a sé che ruba ore preziose.</p>
         </div>
         <div class="card pain-card reveal">
-          <div class="pain-icon">📅</div>
+          <div class="pain-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></div>
           <h3>Scadenze su Excel o Telegram</h3>
-          <p>Deadline sparse tra fogli di calcolo, chat e post-it. Un sistema che funziona finché non smette di funzionare.</p>
+          <p>Deadline sparse tra fogli di calcolo, chat e post-it. Un sistema fragile che, prima o poi, ti lascia a mano vuota.</p>
         </div>
       </div>
     </div>
@@ -980,7 +1031,7 @@
         <div class="card step-card reveal">
           <span class="step-num">03</span>
           <h3>Formazione</h3>
-          <p>Sessione pratica per imparare a usare Arca nel tuo quotidiano. Semplice e veloce.</p>
+          <p>Sessione pratica per integrare Arca nella tua routine di lavoro. Semplice e veloce.</p>
         </div>
         <div class="card step-card reveal">
           <span class="step-num">04</span>
@@ -997,7 +1048,7 @@
       <div class="packages-header reveal">
         <span class="label">Pacchetti</span>
         <h2 class="section-title">Tre configurazioni. Un prezzo chiaro.</h2>
-        <p class="section-subtitle">Non è un abbonamento. È un'installazione.</p>
+        <p class="section-subtitle">Non paghi ogni mese. Installi una volta, funziona per sempre.</p>
       </div>
       <div class="packages-grid">
         <div class="card package-card reveal">
@@ -1051,32 +1102,32 @@
       </div>
       <div class="usecases-grid">
         <div class="card usecase-card reveal">
-          <div class="usecase-icon">📬</div>
+          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"/><path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"/></svg></div>
           <h3>Gestione email client</h3>
           <p>Lettura, classificazione e risposta automatica alle email dei tuoi clienti.</p>
         </div>
         <div class="card usecase-card reveal">
-          <div class="usecase-icon">📋</div>
+          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
           <h3>Scrittura brief e proposte</h3>
           <p>Generazione di brief strutturati e proposte professionali in pochi minuti.</p>
         </div>
         <div class="card usecase-card reveal">
-          <div class="usecase-icon">📆</div>
+          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"/><path d="M3 7.8v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"/><path d="M15 2v5h5"/></svg></div>
           <h3>Tracking scadenze e progetti</h3>
           <p>Monitoraggio automatico di deadline, milestone e avanzamento progetti.</p>
         </div>
         <div class="card usecase-card reveal">
-          <div class="usecase-icon">⚙️</div>
+          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
           <h3>Automazione ops</h3>
           <p>Fatturazione, scheduling e gestione amministrativa senza intervento manuale.</p>
         </div>
         <div class="card usecase-card reveal">
-          <div class="usecase-icon">📊</div>
+          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h8"/><path d="M7 11h12"/><path d="M7 6h3"/></svg></div>
           <h3>Presentazioni e slide</h3>
           <p>Creazione di presentazioni coerenti con il tuo brand, pronte per il cliente.</p>
         </div>
         <div class="card usecase-card reveal">
-          <div class="usecase-icon">🔍</div>
+          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
           <h3>Ricerca e analisi</h3>
           <p>Ricerca di mercato, benchmark e analisi competitive per i tuoi progetti.</p>
         </div>
@@ -1096,7 +1147,7 @@
         <div class="card why-card reveal">
           <h3>Arca</h3>
           <span class="why-vs">vs ChatGPT</span>
-          <p>ChatGPT risponde. Arca agisce. Non ti dà suggerimenti — esegue il lavoro nel tuo studio, sui tuoi strumenti.</p>
+          <p>ChatGPT risponde. Arca agisce. Nessun suggerimento, nessun copia-incolla — solo risultati concreti, direttamente nei tuoi strumenti.</p>
         </div>
         <div class="card why-card reveal">
           <h3>Arca</h3>
@@ -1121,27 +1172,6 @@
         <p class="section-subtitle">30 minuti per capire il tuo studio. Nessun impegno, nessuna vendita aggressiva.</p>
       </div>
       <div class="contact-grid">
-        <div class="reveal">
-          <form class="contact-form" action="https://formspree.io/f/mreodabk" method="POST">
-            <div class="form-group">
-              <label for="name">Nome</label>
-              <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="La tua email" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Telefono</label>
-              <input type="tel" id="phone" name="phone" placeholder="Il tuo numero (opzionale)">
-            </div>
-            <div class="form-group">
-              <label for="message">Messaggio</label>
-              <textarea id="message" name="message" placeholder="Raccontaci del tuo studio..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Invia messaggio</button>
-          </form>
-        </div>
         <div class="contact-info reveal">
           <div class="card calendly-cta">
             <h3 style="margin-bottom:12px;">Prenota direttamente</h3>
@@ -1153,15 +1183,41 @@
             <ul class="contact-links">
               <li>
                 <a href="mailto:info@arca-ai.it">
-                  ✉️ info@arca-ai.it
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  info@arca-ai.it
                 </a>
               </li>
               <li>
                 <a href="https://wa.me/393425680607" target="_blank" rel="noopener">
-                  💬 WhatsApp: +39 342 568 0607
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  WhatsApp: +39 342 568 0607
                 </a>
               </li>
             </ul>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="form-toggle" onclick="document.querySelector('.form-collapsible').classList.toggle('open')">Oppure inviaci un messaggio</p>
+          <div class="form-collapsible">
+            <form class="contact-form" action="https://formspree.io/f/mreodabk" method="POST">
+              <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="La tua email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Telefono</label>
+                <input type="tel" id="phone" name="phone" placeholder="Il tuo numero (opzionale)">
+              </div>
+              <div class="form-group">
+                <label for="message">Messaggio</label>
+                <textarea id="message" name="message" placeholder="Raccontaci del tuo studio..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Invia messaggio</button>
+            </form>
           </div>
         </div>
       </div>
@@ -1183,28 +1239,14 @@
           </a>
           <p class="footer-tagline">L'AI configurata per il tuo studio.</p>
         </div>
-        <div class="footer-nav">
-          <div class="footer-col">
-            <h4>Navigazione</h4>
-            <ul>
-              <li><a href="#come-funziona">Come funziona</a></li>
-              <li><a href="#servizi">Servizi</a></li>
-              <li><a href="#contatti">Contatti</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Contatti</h4>
-            <ul>
-              <li><a href="mailto:info@arca-ai.it">info@arca-ai.it</a></li>
-              <li><a href="https://wa.me/393425680607">WhatsApp</a></li>
-              <li><a href="https://calendly.com/arcalocalai/30min">Calendly</a></li>
-            </ul>
-          </div>
+        <div class="footer-contact">
+          <a href="mailto:info@arca-ai.it" style="color:var(--text-muted);font-size:0.9rem;">info@arca-ai.it</a>
+          <span style="color:var(--border);margin:0 12px;">|</span>
+          <a href="https://wa.me/393425680607" style="color:var(--text-muted);font-size:0.9rem;">WhatsApp</a>
         </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Arca — P.IVA 02448570685</p>
-        <p>L'AI configurata per il tuo studio.</p>
       </div>
     </div>
   </footer>
@@ -1243,6 +1285,28 @@
           mobileMenu.classList.remove('active');
         });
       });
+
+      // Scroll-spy: highlight active nav link
+      const navLinks = document.querySelectorAll('.header-nav a[href^="#"]');
+      const sections = [];
+      navLinks.forEach(function(link) {
+        const id = link.getAttribute('href').replace('#', '');
+        const section = document.getElementById(id);
+        if (section) sections.push({ el: section, link: link });
+      });
+
+      if (sections.length) {
+        const spyObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              navLinks.forEach(function(l) { l.classList.remove('active'); });
+              const match = sections.find(function(s) { return s.el === entry.target; });
+              if (match) match.link.classList.add('active');
+            }
+          });
+        }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+        sections.forEach(function(s) { spyObserver.observe(s.el); });
+      }
 
       // Form validation
       const form = document.querySelector('.contact-form');
