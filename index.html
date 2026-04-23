@@ -3,1349 +3,652 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arca — L'AI Configurata per il tuo Studio</title>
+  <title>Arca — Consulenza AI per aziende italiane</title>
+  <meta name="description" content="Arca aiuta le aziende italiane a capire dove l'AI crea valore, progettare i workflow e implementare soluzioni utili. Consulenza, roadmap, training e opzioni private/locali quando servono privacy e controllo.">
   <link rel="icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0F1C2E;
-      --bg-alt: #172235;
-      --surface: #1A2A40;
-      --text: #F5F1EA;
-      --text-muted: #8B95A5;
-      --gold: #C9A84C;
-      --gold-hover: #E2BC5E;
-      --border: rgba(201, 168, 76, 0.15);
-      --radius: 16px;
-      --font-heading: 'DM Serif Display', serif;
-      --font-body: 'DM Sans', sans-serif;
+      --bg: #0f1c2e;
+      --bg-alt: #13233a;
+      --surface: rgba(26, 42, 64, 0.84);
+      --surface-strong: #1a2a40;
+      --text: #f5f1ea;
+      --muted: #a2adbd;
+      --muted-2: #758195;
+      --gold: #c9a84c;
+      --gold-2: #e2bc5e;
+      --line: rgba(201, 168, 76, 0.18);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --container: 1180px;
+      --heading: 'Playfair Display', serif;
+      --body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-body);
-      background-color: var(--bg);
+      margin: 0;
+      font-family: var(--body);
       color: var(--text);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(201,168,76,0.14), transparent 26%),
+        radial-gradient(circle at 88% 8%, rgba(91,124,255,0.10), transparent 24%),
+        linear-gradient(180deg, var(--bg) 0%, #0b1524 100%);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    /* Scroll animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(calc(100% - 32px), var(--container)); margin: 0 auto; }
 
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Typography */
-    h1, h2, h3 {
-      font-family: var(--font-heading);
-      font-weight: 400;
-    }
-
-    h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15; }
-    h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; }
-    h3 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
-
-    a {
-      color: var(--gold);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    a:hover { color: var(--gold-hover); }
-
-    /* Container */
-    .container {
-      width: 100%;
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    section {
-      padding: 80px 0;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--bg);
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-hover);
-      color: var(--bg);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.25);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(201, 168, 76, 0.1);
-      color: var(--gold-hover);
-    }
-
-    .btn-ghost {
-      background: rgba(201, 168, 76, 0.08);
-      color: var(--gold);
-      border: 1px solid var(--border);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(201, 168, 76, 0.15);
-      color: var(--gold-hover);
-    }
-
-    /* Cards */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Section label */
-    .label {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #D4B55A;
-      margin-bottom: 12px;
-    }
-
-    /* Section title */
-    .section-title {
-      margin-bottom: 16px;
-    }
-
-    .section-subtitle {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      max-width: 600px;
-    }
-
-    /* ===================== HEADER ===================== */
-    .header {
-      position: fixed;
+    .site-header {
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(15, 28, 46, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(15, 28, 46, 0.84);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.14);
     }
-
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      gap: 20px;
+      min-height: 76px;
+      padding: 14px 0;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--heading);
+      font-size: 1.45rem;
+      letter-spacing: 0.01em;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .brand img { width: 36px; height: 36px; object-fit: cover; border-radius: 50%; }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a {
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .nav a:hover { color: var(--gold-2); }
+    .nav-cta {
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,168,76,0.26);
+      background: rgba(201,168,76,0.08);
+      color: var(--gold);
     }
 
-    .header-brand {
-      display: flex;
+    .hero {
+      padding: 76px 0 42px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 32px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-family: var(--font-heading);
-      font-size: 1.4rem;
-      color: var(--gold);
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(201,168,76,0.08);
+      color: var(--gold-2);
+      border: 1px solid rgba(201,168,76,0.18);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
     }
-
-    .header-brand svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .header-nav a {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .header-nav a:hover {
-      color: var(--text);
-    }
-
-    .header-cta {
-      padding: 10px 20px;
-      font-size: 0.9rem;
-    }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--text);
-      margin: 6px 0;
-      transition: all 0.3s;
-      border-radius: 2px;
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 6px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -6px);
-    }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px;
-      left: 0;
-      right: 0;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 20px;
-    }
-
-    .mobile-menu.active {
-      display: block;
-    }
-
-    .mobile-menu a {
-      display: block;
-      padding: 12px 0;
-      color: var(--text);
-      font-size: 1.1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .mobile-menu a:last-child {
-      border-bottom: none;
-      margin-top: 8px;
-    }
-
-    /* ===================== HERO ===================== */
-    .hero {
-      padding-top: 140px;
-      padding-bottom: 100px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px;
-      right: -200px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-    }
-
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--gold);
-      background: rgba(201, 168, 76, 0.1);
-      border: 1px solid var(--border);
-      padding: 6px 16px;
-      border-radius: 100px;
-      margin-bottom: 24px;
-    }
-
     .hero h1 {
-      margin-bottom: 20px;
+      margin: 0;
+      font-family: var(--heading);
+      font-size: clamp(2.6rem, 6vw, 4.75rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      max-width: 12ch;
     }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 560px;
+    .hero .lead {
+      margin: 22px 0 0;
+      max-width: 58ch;
+      font-size: 1.06rem;
+      color: var(--muted);
     }
-
-    .hero-buttons {
+    .hero-actions {
       display: flex;
-      gap: 16px;
       flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
     }
-
-    /* ===================== PROBLEM ===================== */
-    .problem {
-      background: var(--bg-alt);
-    }
-
-    .problem-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .problem-header .section-subtitle {
-      margin: 0 auto;
-    }
-
-    .pain-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .pain-card {
-      padding: 28px;
-    }
-
-    .pain-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(201, 168, 76, 0.08);
-      display: flex;
+    .btn {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
-      font-size: 1.4rem;
-    }
-
-    .pain-card h3 {
-      font-family: var(--font-body);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .pain-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    /* ===================== HOW IT WORKS ===================== */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-top: 48px;
-    }
-
-    .step-card {
-      text-align: center;
-      padding: 32px 20px;
-    }
-
-    .step-num {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      font-weight: 300;
-      color: var(--gold);
-      opacity: 0.5;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .step-card h3 {
-      margin-bottom: 12px;
-    }
-
-    .step-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      max-width: 65ch;
-      margin: 0 auto;
-    }
-
-    /* ===================== PACKAGES ===================== */
-    .packages {
-      background: var(--bg-alt);
-    }
-
-    .packages-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .packages-header .section-subtitle {
-      margin: 0 auto;
-    }
-
-    .packages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      align-items: start;
-    }
-
-    .package-card {
-      position: relative;
-    }
-
-    .package-card.featured {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 1px var(--gold), 0 12px 32px rgba(201, 168, 76, 0.1);
-    }
-
-    .package-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gold);
-      color: var(--bg);
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 4px 16px;
-      border-radius: 100px;
-    }
-
-    .package-name {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      margin-bottom: 8px;
-    }
-
-    .package-price {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-
-    .package-price-note {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 24px;
-    }
-
-    .package-features {
-      list-style: none;
-      margin-bottom: 28px;
-    }
-
-    .package-features li {
-      padding: 8px 0;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      display: flex;
-      align-items: flex-start;
       gap: 10px;
-    }
-
-    .package-features li::before {
-      content: '✓';
-      color: var(--gold);
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
       font-weight: 700;
-      flex-shrink: 0;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      border: 1px solid transparent;
     }
-
-    .package-card .btn {
-      width: 100%;
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--gold);
+      color: #0f1c2e;
+      box-shadow: 0 14px 36px rgba(201, 168, 76, 0.24);
     }
-
-    /* ===================== USE CASES ===================== */
-    .use-cases-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .use-cases-header .section-subtitle {
-      margin: 0 auto;
-    }
-
-    .usecases-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .usecase-card {
-      padding: 28px;
-    }
-
-    .usecase-icon {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-    }
-
-    .usecase-card h3 {
-      font-family: var(--font-body);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .usecase-card p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* ===================== WHY ARCA ===================== */
-    .why {
-      background: var(--bg-alt);
-    }
-
-    .why-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .why-header .section-subtitle {
-      margin: 0 auto;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .why-card {
-      padding: 32px;
-      border-left: 3px solid var(--gold);
-    }
-
-    .why-card h3 {
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
+    .btn-primary:hover { background: var(--gold-2); }
+    .btn-secondary {
+      border-color: rgba(201,168,76,0.22);
+      background: rgba(255,255,255,0.02);
       color: var(--text);
     }
+    .btn-secondary:hover { border-color: rgba(201,168,76,0.38); background: rgba(201,168,76,0.06); }
 
-    .why-card .why-vs {
-      display: inline-block;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-
-    .why-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    /* ===================== CONTACT ===================== */
-    .contact {
+    .hero-card {
       position: relative;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(26, 42, 64, 0.92), rgba(19, 35, 58, 0.94));
+      border: 1px solid rgba(201,168,76,0.16);
+      box-shadow: var(--shadow);
       overflow: hidden;
     }
-
-    .contact::after {
+    .hero-card::before {
       content: '';
       position: absolute;
-      bottom: -150px;
-      right: -150px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+      inset: -1px;
+      background: radial-gradient(circle at top right, rgba(201,168,76,0.16), transparent 35%);
       pointer-events: none;
     }
-
-    .contact-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .contact-header .section-subtitle {
-      margin: 0 auto;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+    .hero-card h2 {
       position: relative;
-      z-index: 1;
+      margin: 0 0 16px;
+      font-family: var(--heading);
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-card p { position: relative; margin: 0; color: var(--muted); }
+    .pill-row {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,168,76,0.18);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .mini-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .mini {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .mini strong { display: block; color: var(--gold-2); margin-bottom: 4px; font-size: 1rem; }
+    .mini span { color: var(--muted); font-size: 0.92rem; }
+
+    .section { padding: 62px 0; }
+    .section-head { margin-bottom: 24px; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: var(--gold-2);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .section h2 {
+      margin: 0;
+      font-family: var(--heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 14ch;
+    }
+    .section p.section-copy {
+      margin: 12px 0 0;
+      max-width: 68ch;
+      color: var(--muted);
+      font-size: 1.02rem;
     }
 
-    .contact-form {
-      display: flex;
-      flex-direction: column;
+    .grid-4,
+    .grid-3 {
+      display: grid;
+      gap: 18px;
+    }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      min-height: 100%;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .card p { margin: 0; color: var(--muted); }
+    .card .card-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--gold-2);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .card li + li { margin-top: 8px; }
+
+    .showcase-list {
+      display: grid;
+      gap: 18px;
+    }
+    .showcase-item {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding: 20px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .showcase-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(201,168,76,0.10);
+      color: var(--gold-2);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .showcase-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+    }
+    .showcase-item p { margin: 0; color: var(--muted); }
+    .showcase-note { color: var(--muted-2); font-size: 0.92rem; margin-top: 10px; }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
     }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .step {
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,168,76,0.14);
     }
-
-    .form-group label {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-
-    .form-group input,
-    .form-group textarea {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 16px;
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      transition: border-color 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .calendly-cta {
-      padding: 28px;
-      text-align: center;
-    }
-
-    .calendly-cta p {
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    .direct-contact {
-      padding: 28px;
-    }
-
-    .direct-contact h3 {
-      font-family: var(--font-body);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .contact-links {
-      list-style: none;
-    }
-
-    .contact-links li {
-      margin-bottom: 12px;
-    }
-
-    .contact-links a {
-      display: flex;
+    .step-num {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
       align-items: center;
-      gap: 10px;
-      color: var(--text-muted);
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 14px;
+      background: rgba(201,168,76,0.12);
+      color: var(--gold-2);
+      font-weight: 800;
+    }
+    .step h3 { margin: 0 0 8px; }
+    .step p { margin: 0; color: var(--muted); }
+
+    .cta {
+      margin: 16px 0 84px;
+      padding: 28px;
+      border-radius: calc(var(--radius) + 2px);
+      background: linear-gradient(180deg, rgba(201,168,76,0.10), rgba(255,255,255,0.02));
+      border: 1px solid rgba(201,168,76,0.22);
+      box-shadow: var(--shadow);
+    }
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1.1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+    .cta h2 { margin: 0; font-family: var(--heading); font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.05; }
+    .cta p { margin: 10px 0 0; max-width: 58ch; color: var(--muted); }
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+
+    .footer {
+      padding: 26px 0 42px;
+      border-top: 1px solid rgba(201,168,76,0.14);
+      color: var(--muted-2);
       font-size: 0.95rem;
     }
-
-    .contact-links a:hover {
-      color: var(--gold);
-    }
-
-    /* ===================== FOOTER ===================== */
-    .footer {
-      background: linear-gradient(180deg, var(--bg) 0%, #0A1422 100%);
-      border-top: 1px solid var(--border);
-      padding: 48px 0 24px;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 40px;
-      margin-bottom: 32px;
-    }
-
-    .footer-brand {
+    .footer-inner {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-
-    .footer-brand svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    .footer-tagline {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .footer-nav {
-      display: flex;
-      gap: 48px;
-    }
-
-    .footer-col h4 {
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col li {
-      margin-bottom: 8px;
-    }
-
-    .footer-col a {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .footer-col a:hover {
-      color: var(--gold);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
-      display: flex;
       justify-content: space-between;
-      align-items: center;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 12px;
     }
+    .footer strong { color: var(--text); }
 
-    .footer-bottom p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
+    @media (max-width: 1060px) {
+      .hero-grid, .cta-inner, .showcase-item { grid-template-columns: 1fr; }
+      .grid-4, .process { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .cta-actions { justify-content: flex-start; }
     }
-
-    /* ===================== RESPONSIVE ===================== */
-    /* Anchor scroll offset */
-    section[id] {
-      scroll-margin-top: 80px;
-    }
-
-    /* SVG icon styles */
-    .pain-icon svg,
-    .usecase-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--gold);
-    }
-
-    /* Nav active state */
-    .header-nav a.active {
-      color: var(--text);
-    }
-
-    /* Secondary form toggle */
-    .form-toggle {
-      cursor: pointer;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      text-align: center;
-      padding: 12px;
-      border: 1px dashed var(--border);
-      border-radius: 10px;
-      transition: color 0.2s;
-    }
-    .form-toggle:hover {
-      color: var(--gold);
-    }
-    .form-collapsible {
-      display: none;
-    }
-    .form-collapsible.open {
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      .header-nav {
-        display: none;
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      section {
-        padding: 60px 0;
-      }
-
-      .hero {
-        padding-top: 110px;
-        padding-bottom: 60px;
-      }
-
-      .hero-content {
-        padding: 0 24px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-      }
-
-      .hero-buttons .btn {
-        width: 100%;
-      }
-
-      .pain-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .steps-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .packages-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-        margin: 0 auto;
-      }
-
-      .package-card.featured {
-        order: -1;
-      }
-
-      .usecases-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-top {
-        flex-direction: column;
-      }
-
-      .footer-nav {
-        flex-direction: column;
-        gap: 24px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .steps-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 720px) {
+      .header-inner { align-items: flex-start; flex-direction: column; }
+      .nav { justify-content: flex-start; gap: 14px 16px; }
+      .hero { padding-top: 54px; }
+      .hero h1 { max-width: none; }
+      .mini-grid, .grid-4, .process { grid-template-columns: 1fr; }
+      .section { padding: 50px 0; }
+      .cta { padding: 22px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- HEADER -->
-  <header class="header">
+  <header class="site-header">
     <div class="container header-inner">
-      <a href="#" class="header-brand">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-          <path d="M6 22.5C6 12 13.5 6 22.5 6" fill="none" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
-          <path d="M8 23.5C8 14 14.6 8.5 23 8.5" fill="none" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
-          <path d="M22.5 6C25.3 8.8 27 12.6 27 16.8" fill="none" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
-        Arca
+      <a class="brand" href="#top" aria-label="Arca homepage">
+        <img src="logo.png" alt="Arca logo">
+        <span>Arca</span>
       </a>
-      <nav class="header-nav">
-        <a href="#come-funziona">Come funziona</a>
+      <nav class="nav" aria-label="Navigation">
         <a href="#servizi">Servizi</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#metodo">Metodo</a>
         <a href="#contatti">Contatti</a>
-        <a href="https://calendly.com/arcalocalai/30min" class="btn btn-primary header-cta">Prenota consulenza</a>
+        <a class="nav-cta" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota una call</a>
       </nav>
-      <button class="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
-    <nav class="mobile-menu">
-      <a href="#come-funziona">Come funziona</a>
-      <a href="#servizi">Servizi</a>
-      <a href="#contatti">Contatti</a>
-      <a href="https://calendly.com/arcalocalai/30min" class="btn btn-primary" style="text-align:center;">Prenota consulenza gratuita</a>
-    </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-content">
-      <span class="hero-eyebrow reveal">L'AI configurata per il tuo studio.</span>
-      <h1 class="reveal">Agenti autonomi che gestiscono il tuo studio creativo.</h1>
-        <p class="hero-sub reveal">Configurata sul tuo studio. Operativa dal primo giorno. L'AI che gestisce email, brief, proposte e scadenze — esattamente come li gestiresti tu.</p>
-      <div class="hero-buttons reveal">
-        <a href="https://calendly.com/arcalocalai/30min" class="btn btn-primary">Prenota la consulenza gratuita</a>
-        <a href="#come-funziona" class="btn btn-secondary">Scopri come funziona</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- THE PROBLEM -->
-  <section class="problem" id="problema">
-    <div class="container">
-      <div class="problem-header reveal">
-        <span class="label">Il problema</span>
-        <h2 class="section-title">Ti suona familiare?</h2>
-        <p class="section-subtitle">Sai già cosa succede quando il lavoro cresce ma il tempo no.</p>
-      </div>
-      <div class="pain-grid">
-        <div class="card pain-card reveal">
-          <div class="pain-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
-          <h3>Email che si accumulano</h3>
-          <p>Clienti che aspettano risposte, richieste perse, inbox che diventa un secondo lavoro a tempo pieno.</p>
-        </div>
-        <div class="card pain-card reveal">
-          <div class="pain-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div>
-          <h3>Brief vaghi, infinite revisioni</h3>
-          <p>Informazioni incomplete che generano ambiguità, riunioni extra e cicli di correzione infiniti.</p>
-        </div>
-        <div class="card pain-card reveal">
-          <div class="pain-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <h3>Proposte che costano ore ogni volta</h3>
-          <p>Scrivere, formattare, personalizzare. Ogni proposta è un progetto a sé che ruba ore preziose.</p>
-        </div>
-        <div class="card pain-card reveal">
-          <div class="pain-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></div>
-          <h3>Scadenze su Excel o Telegram</h3>
-          <p>Deadline sparse tra fogli di calcolo, chat e post-it. Un sistema fragile che, prima o poi, ti lascia a mano vuota.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how" id="come-funziona">
-    <div class="container">
-      <div class="reveal" style="text-align:center; margin-bottom:8px;">
-        <span class="label">Come funziona</span>
-      </div>
-      <div class="reveal" style="text-align:center; margin-bottom:16px;">
-        <h2 class="section-title">Quattro passaggi. Zero complicazioni.</h2>
-      </div>
-      <div class="reveal" style="text-align:center;">
-        <p class="section-subtitle" style="margin:0 auto;">Non devi fare nulla. Ci pensiamo noi.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="card step-card reveal">
-          <span class="step-num">01</span>
-          <h3>Consulenza gratuita</h3>
-          <p>30 minuti per capire il tuo flusso di lavoro, i tuoi strumenti e le tue priorità.</p>
-        </div>
-        <div class="card step-card reveal">
-          <span class="step-num">02</span>
-          <h3>Configurazione</h3>
-          <p>Impostiamo tutto noi. Integriamo gli strumenti che usi già. Tu non fai nulla.</p>
-        </div>
-        <div class="card step-card reveal">
-          <span class="step-num">03</span>
-          <h3>Formazione</h3>
-          <p>Sessione pratica per integrare Arca nella tua routine di lavoro. Semplice e veloce.</p>
-        </div>
-        <div class="card step-card reveal">
-          <span class="step-num">04</span>
-          <h3>Operativa</h3>
-          <p>Funziona dal primo giorno. Nessun periodo di rodaggio, nessuna perdita di tempo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PACKAGES -->
-  <section class="packages" id="servizi">
-    <div class="container">
-      <div class="packages-header reveal">
-        <span class="label">Pacchetti</span>
-        <h2 class="section-title">Tre configurazioni. Un prezzo chiaro.</h2>
-        <p class="section-subtitle">Non paghi ogni mese. Installi una volta, funziona per sempre.</p>
-      </div>
-      <div class="packages-grid">
-        <div class="card package-card reveal">
-          <div class="package-name">Arca Cloud</div>
-          <div class="package-price">€4.000</div>
-          <div class="package-price-note">una tantum</div>
-          <ul class="package-features">
-            <li>Setup rapido, zero hardware</li>
-            <li>Funziona da subito</li>
-            <li>Aggiornamenti automatici</li>
-            <li>Configurazione personalizzata</li>
-          </ul>
-          <a href="#contatti" class="btn btn-ghost">Scopri di più</a>
-        </div>
-        <div class="card package-card featured reveal">
-          <span class="package-badge">Consigliato</span>
-          <div class="package-name">Arca Local</div>
-          <div class="package-price">€7.500</div>
-          <div class="package-price-note">una tantum</div>
-          <ul class="package-features">
-            <li>Controllo totale</li>
-            <li>I dati restano con te</li>
-            <li>Massima personalizzazione</li>
-            <li>Configurazione completa</li>
-          </ul>
-          <a href="#contatti" class="btn btn-primary">Scopri di più</a>
-        </div>
-        <div class="card package-card reveal">
-          <div class="package-name">Arca Care</div>
-          <div class="package-price">€300</div>
-          <div class="package-price-note">al mese</div>
-          <ul class="package-features">
-            <li>Aggiornamenti continui</li>
-            <li>Supporto prioritario</li>
-            <li>Evoluzione degli agenti</li>
-            <li>Monitoraggio e ottimizzazione</li>
-          </ul>
-          <a href="#contatti" class="btn btn-ghost">Scopri di più</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- USE CASES -->
-  <section class="use-cases">
-    <div class="container">
-      <div class="use-cases-header reveal">
-        <span class="label">Cosa fa Arca</span>
-        <h2 class="section-title">Agenti che fanno il lavoro concreto.</h2>
-        <p class="section-subtitle">Non chat. Azioni reali nel tuo studio.</p>
-      </div>
-      <div class="usecases-grid">
-        <div class="card usecase-card reveal">
-          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"/><path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"/></svg></div>
-          <h3>Gestione email client</h3>
-          <p>Lettura, classificazione e risposta automatica alle email dei tuoi clienti.</p>
-        </div>
-        <div class="card usecase-card reveal">
-          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
-          <h3>Scrittura brief e proposte</h3>
-          <p>Generazione di brief strutturati e proposte professionali in pochi minuti.</p>
-        </div>
-        <div class="card usecase-card reveal">
-          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"/><path d="M3 7.8v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"/><path d="M15 2v5h5"/></svg></div>
-          <h3>Tracking scadenze e progetti</h3>
-          <p>Monitoraggio automatico di deadline, milestone e avanzamento progetti.</p>
-        </div>
-        <div class="card usecase-card reveal">
-          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
-          <h3>Automazione ops</h3>
-          <p>Fatturazione, scheduling e gestione amministrativa senza intervento manuale.</p>
-        </div>
-        <div class="card usecase-card reveal">
-          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h8"/><path d="M7 11h12"/><path d="M7 6h3"/></svg></div>
-          <h3>Presentazioni e slide</h3>
-          <p>Creazione di presentazioni coerenti con il tuo brand, pronte per il cliente.</p>
-        </div>
-        <div class="card usecase-card reveal">
-          <div class="usecase-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
-          <h3>Ricerca e analisi</h3>
-          <p>Ricerca di mercato, benchmark e analisi competitive per i tuoi progetti.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY ARCA -->
-  <section class="why">
-    <div class="container">
-      <div class="why-header reveal">
-        <span class="label">Perché Arca</span>
-        <h2 class="section-title">Non è un'altra app. È un salto.</h2>
-        <p class="section-subtitle">Ecco la differenza rispetto a quello che hai già provato.</p>
-      </div>
-      <div class="why-grid">
-        <div class="card why-card reveal">
-          <h3>Arca</h3>
-          <span class="why-vs">vs ChatGPT</span>
-          <p>ChatGPT risponde. Arca agisce. Nessun suggerimento, nessun copia-incolla — solo risultati concreti, direttamente nei tuoi strumenti.</p>
-        </div>
-        <div class="card why-card reveal">
-          <h3>Arca</h3>
-          <span class="why-vs">vs Notion AI</span>
-          <p>Notion AI funziona dentro Notion. Arca funziona su tutto: email, documenti, calendario, strumenti del tuo studio.</p>
-        </div>
-        <div class="card why-card reveal">
-          <h3>Arca</h3>
-          <span class="why-vs">vs Assistente Virtuale</span>
-          <p>Una VA costa €1.500+ al mese e va gestita. Arca è una configurazione unica — funziona 24/7 senza supervisione.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contatti">
-    <div class="container">
-      <div class="contact-header reveal">
-        <span class="label">Contatti</span>
-        <h2 class="section-title">Iniziamo con una consulenza gratuita.</h2>
-        <p class="section-subtitle">30 minuti per capire il tuo studio. Nessun impegno, nessuna vendita aggressiva.</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info reveal">
-          <div class="card calendly-cta">
-            <h3 style="margin-bottom:12px;">Prenota direttamente</h3>
-            <p>Scegli un orario comodo per una call di 30 minuti. Nessun impegno.</p>
-            <a href="https://calendly.com/arcalocalai/30min" class="btn btn-primary" style="width:100%;">Prenota su Calendly</a>
-          </div>
-          <div class="card direct-contact">
-            <h3>Contatti diretti</h3>
-            <ul class="contact-links">
-              <li>
-                <a href="mailto:info@arca-ai.it">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                  info@arca-ai.it
-                </a>
-              </li>
-              <li>
-                <a href="https://wa.me/393425680607" target="_blank" rel="noopener">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                  WhatsApp: +39 342 568 0607
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="reveal">
-          <p class="form-toggle" onclick="document.querySelector('.form-collapsible').classList.toggle('open')">Oppure inviaci un messaggio</p>
-          <div class="form-collapsible">
-            <form class="contact-form" action="https://formspree.io/f/mreodabk" method="POST">
-              <div class="form-group">
-                <label for="name">Nome</label>
-                <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="La tua email" required>
-              </div>
-              <div class="form-group">
-                <label for="phone">Telefono</label>
-                <input type="tel" id="phone" name="phone" placeholder="Il tuo numero (opzionale)">
-              </div>
-              <div class="form-group">
-                <label for="message">Messaggio</label>
-                <textarea id="message" name="message" placeholder="Raccontaci del tuo studio..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Invia messaggio</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
         <div>
-          <a href="#" class="footer-brand">
-            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-              <path d="M6 22.5C6 12 13.5 6 22.5 6" fill="none" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M8 23.5C8 14 14.6 8.5 23 8.5" fill="none" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
-              <path d="M22.5 6C25.3 8.8 27 12.6 27 16.8" fill="none" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
-            </svg>
-            Arca
-          </a>
-          <p class="footer-tagline">L'AI configurata per il tuo studio.</p>
+          <div class="eyebrow">Consulenza AI · workflow design · local/private AI</div>
+          <h1>Porto l'AI dentro i processi delle aziende italiane.</h1>
+          <p class="lead">
+            Analizzo come lavori oggi, individuo dove l'AI crea valore reale, disegno il workflow e lo implemento con il tuo team.
+            Se la privacy conta, progetto anche soluzioni locali o private. Il punto non è vendere un chatbot: è cambiare il modo in cui lavori.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota una call di 30 minuti</a>
+            <a class="btn btn-secondary" href="#showcase">Vedi cosa ho già costruito</a>
+          </div>
         </div>
-        <div class="footer-contact">
-          <a href="mailto:info@arca-ai.it" style="color:var(--text-muted);font-size:0.9rem;">info@arca-ai.it</a>
-          <span style="color:var(--border);margin:0 12px;">|</span>
-          <a href="https://wa.me/393425680607" style="color:var(--text-muted);font-size:0.9rem;">WhatsApp</a>
+
+        <aside class="hero-card">
+          <h2>Da dove parto</h2>
+          <p>
+            Il mercato cambia in fretta. Oggi il valore non sta nel possedere “un agente” in astratto, ma nel capire quali processi automatizzare,
+            quali controlli mettere e come far adottare l'AI a un'azienda vera.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Audit AI</span>
+            <span class="pill">Roadmap</span>
+            <span class="pill">Pilot</span>
+            <span class="pill">Training</span>
+            <span class="pill">Governance</span>
+          </div>
+          <div class="mini-grid">
+            <div class="mini">
+              <strong>Privato quando serve</strong>
+              <span>Local models, on-prem o ambienti chiusi per casi sensibili.</span>
+            </div>
+            <div class="mini">
+              <strong>Pratico subito</strong>
+              <span>Workflow concreti, non slide astratte o demo teatrali.</span>
+            </div>
+            <div class="mini">
+              <strong>Italiano, non generico</strong>
+              <span>Processi, tono e vincoli di aziende italiane reali.</span>
+            </div>
+            <div class="mini">
+              <strong>Esco con un piano</strong>
+              <span>Ti lascio decisioni, priorità e prossimi passi chiari.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="servizi">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Servizi</div>
+          <h2>Cosa faccio per i clienti</h2>
+          <p class="section-copy">
+            Arca non è un prodotto da installare e basta. È un lavoro di consulenza, progettazione e messa a terra.
+            Parto dal processo, non dal modello.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card">
+            <div class="card-kicker">01 · Audit</div>
+            <h3>Diagnosi dei processi</h3>
+            <p>Capisco dove si perde tempo, dove il rischio è alto e dove l'AI può fare davvero la differenza.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">02 · Roadmap</div>
+            <h3>Strategia e priorità</h3>
+            <p>Definisco casi d'uso, ordine di implementazione, KPI e rischi prima di toccare la tecnologia.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">03 · Delivery</div>
+            <h3>Implementazione e pilot</h3>
+            <p>Costruisco il primo flusso, lo provo sul campo e correggo fino a renderlo utile per il team.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">04 · Private AI</div>
+            <h3>Opzioni locali e riservate</h3>
+            <p>Quando privacy e controllo contano, progetto soluzioni locali o ambienti chiusi con modelli adeguati.</p>
+          </article>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Arca — P.IVA 02448570685</p>
+    </section>
+
+    <section class="section" id="showcase">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Showcase</div>
+          <h2>Quello che ho già costruito</h2>
+          <p class="section-copy">
+            Non arrivo con teoria generica. Ho già costruito infrastruttura, UI, workflow e materiali per portare l'AI in produzione.
+            Questo è il punto da cui parto quando lavoro con un cliente.
+          </p>
+        </div>
+
+        <div class="showcase-list">
+          <article class="showcase-item">
+            <div>
+              <div class="showcase-tag">Sistema</div>
+              <h3>Stack multi-agente e orchestrazione</h3>
+              <p>Agenti specializzati, routing, automazioni interne e pipeline di lavoro già pronte per essere adattate a casi reali.</p>
+            </div>
+            <div class="showcase-note">Base utile quando serve capire non solo “cosa può fare l'AI”, ma come farla lavorare in modo affidabile dentro un'organizzazione.</div>
+          </article>
+
+          <article class="showcase-item">
+            <div>
+              <div class="showcase-tag">Interfaccia</div>
+              <h3>UI professionale per utenti non tecnici</h3>
+              <p>Interfacce pulite, chat, upload file, integrazioni e configurazioni pensate per persone che devono lavorare, non studiare tool.</p>
+            </div>
+            <div class="showcase-note">È la differenza tra una demo interessante e una soluzione che un team usa davvero ogni giorno.</div>
+          </article>
+
+          <article class="showcase-item">
+            <div>
+              <div class="showcase-tag">Go-to-market</div>
+              <h3>Outreach, proposal e materiali commerciali</h3>
+              <p>Template email, flussi di follow-up, documenti di proposta e materiali di vendita costruiti per presentare l'offerta in modo chiaro.</p>
+            </div>
+            <div class="showcase-note">Utile per trasformare una buona idea in un servizio che si vende, si spiega e si consegna bene.</div>
+          </article>
+
+          <article class="showcase-item">
+            <div>
+              <div class="showcase-tag">Contenuti</div>
+              <h3>Deck, PDF e video di showcase</h3>
+              <p>Ho già preparato materiali dimostrativi per mostrare il lavoro fatto: presentazioni, PDF e video narrativi che spiegano il valore in modo semplice.</p>
+            </div>
+            <div class="showcase-note">Questo diventa una leva commerciale: fai vedere cosa sai fare, non solo cosa prometti.</div>
+          </article>
+        </div>
       </div>
+    </section>
+
+    <section class="section" id="metodo">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Metodo</div>
+          <h2>Quattro passi, senza fumo</h2>
+          <p class="section-copy">
+            L'obiettivo è semplice: capire dove l'AI ha impatto, ridurre il rischio di scelte sbagliate e portare risultati misurabili.
+          </p>
+        </div>
+
+        <div class="process">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Diagnosi</h3>
+            <p>Mappo processi, colli di bottiglia, dati disponibili e punti in cui l'AI può aiutare subito.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Design</h3>
+            <p>Disegno un workflow concreto: ruoli, input, controllo, limiti e strumenti da usare davvero.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Pilot</h3>
+            <p>Costruisco un primo flusso, lo provo con il team e raccolgo feedback reali prima di scalare.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <h3>Rollout</h3>
+            <p>Formazione, supporto e miglioramento continuo, con la possibilità di introdurre ambienti locali o privati.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Perché Arca</div>
+          <h2>Perché questo approccio funziona adesso</h2>
+          <p class="section-copy">
+            Il mercato è cambiato. Le aziende non hanno bisogno di un “agente” da mostrare, ma di qualcuno che sappia scegliere cosa adottare,
+            cosa evitare e come farlo funzionare con i vincoli reali di business, privacy e adozione.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-kicker">Esperienza</div>
+            <h3>So costruire e so spiegare</h3>
+            <p>Arca unisce lato strategico e lato operativo: dalla diagnosi alla consegna, senza perdere il contatto con il campo.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">Privacy</div>
+            <h3>Local / private non è hype</h3>
+            <p>Quando serve, l'AI può restare dentro l'infrastruttura del cliente. Non è sempre la risposta, ma è spesso una risposta valida.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">Adozione</div>
+            <h3>Il focus è farla usare al team</h3>
+            <p>La soluzione giusta è quella che la gente adotta. Per questo il design del workflow conta quanto il modello scelto.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container cta">
+        <div class="cta-inner">
+          <div>
+            <div class="section-label">Contatti</div>
+            <h2>Se vuoi capire dove l'AI può aiutare davvero la tua azienda, parliamone.</h2>
+            <p>
+              Ti porto una visione pratica: dove l'AI ha senso, dove no, cosa fare prima e come evitare di buttare tempo e budget in tool inutili.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota la call</a>
+            <a class="btn btn-secondary" href="mailto:pier@arca-ai.it">Scrivimi una mail</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><strong>Arca</strong> · Consulenza AI per aziende italiane</div>
+      <div>pier@arca-ai.it · WhatsApp +39 342 568 0607</div>
     </div>
   </footer>
-
-  <script>
-    // IntersectionObserver for scroll reveals
-    document.addEventListener('DOMContentLoaded', function() {
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
-      });
-
-      document.querySelectorAll('.reveal').forEach(function(el) {
-        observer.observe(el);
-      });
-
-      // Mobile menu toggle
-      const hamburger = document.querySelector('.hamburger');
-      const mobileMenu = document.querySelector('.mobile-menu');
-
-      hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-      });
-
-      // Close mobile menu on link click
-      mobileMenu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          hamburger.classList.remove('active');
-          mobileMenu.classList.remove('active');
-        });
-      });
-
-      // Scroll-spy: highlight active nav link
-      const navLinks = document.querySelectorAll('.header-nav a[href^="#"]');
-      const sections = [];
-      navLinks.forEach(function(link) {
-        const id = link.getAttribute('href').replace('#', '');
-        const section = document.getElementById(id);
-        if (section) sections.push({ el: section, link: link });
-      });
-
-      if (sections.length) {
-        const spyObserver = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              navLinks.forEach(function(l) { l.classList.remove('active'); });
-              const match = sections.find(function(s) { return s.el === entry.target; });
-              if (match) match.link.classList.add('active');
-            }
-          });
-        }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
-        sections.forEach(function(s) { spyObserver.observe(s.el); });
-      }
-
-      // Form validation
-      const form = document.querySelector('.contact-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          const name = form.querySelector('#name');
-          const email = form.querySelector('#email');
-          const message = form.querySelector('#message');
-
-          let valid = true;
-
-          if (!name.value.trim()) {
-            name.style.borderColor = '#ff6b6b';
-            valid = false;
-          } else {
-            name.style.borderColor = '';
-          }
-
-          if (!email.value.trim() || !email.value.includes('@')) {
-            email.style.borderColor = '#ff6b6b';
-            valid = false;
-          } else {
-            email.style.borderColor = '';
-          }
-
-          if (!message.value.trim()) {
-            message.style.borderColor = '#ff6b6b';
-            valid = false;
-          } else {
-            message.style.borderColor = '';
-          }
-
-          if (!valid) {
-            e.preventDefault();
-          }
-        });
-      }
-    });
-  </script>
-
 </body>
 </html>
