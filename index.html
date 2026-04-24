@@ -45,11 +45,26 @@
       line-height: 1.62;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
     .container { width: min(calc(100% - 32px), var(--container)); margin: 0 auto; }
+
+    /* Subtle Animations */
+    .animate-fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .animate-fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
 
     .site-header {
       position: sticky;
@@ -58,6 +73,10 @@
       backdrop-filter: blur(16px);
       background: rgba(245, 241, 234, 0.84);
       border-bottom: 1px solid rgba(23, 34, 53, 0.08);
+      transition: box-shadow 0.3s ease;
+    }
+    .site-header.scrolled {
+      box-shadow: 0 4px 20px rgba(15, 28, 46, 0.05);
     }
     .header-inner {
       display: flex;
@@ -76,7 +95,9 @@
       font-size: 1.45rem;
       letter-spacing: 0.01em;
       color: var(--navy);
+      transition: transform 0.2s ease;
     }
+    .brand:hover { transform: scale(1.02); }
     .brand img {
       width: 36px;
       height: 36px;
@@ -97,14 +118,20 @@
       font-weight: 600;
       transition: color 0.2s ease, transform 0.2s ease;
     }
-    .nav a:hover { color: var(--navy); }
+    .nav a:hover { color: var(--navy); transform: translateY(-1px); }
     .nav-cta {
       padding: 11px 18px;
       border-radius: 999px;
       border: 1px solid rgba(201,168,76,0.24);
       background: rgba(201,168,76,0.10);
-      color: var(--navy);
+      color: var(--navy) !important;
       box-shadow: 0 12px 28px rgba(201,168,76,0.12);
+      transition: all 0.2s ease !important;
+    }
+    .nav-cta:hover {
+      background: rgba(201,168,76,0.18);
+      box-shadow: 0 14px 32px rgba(201,168,76,0.15);
+      transform: translateY(-1px) !important;
     }
 
     .hero { padding: 84px 0 42px; }
@@ -142,7 +169,8 @@
       margin: 22px 0 0;
       max-width: 58ch;
       color: var(--muted);
-      font-size: 1.08rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
     .hero-actions {
       display: flex;
@@ -158,17 +186,17 @@
       padding: 0 20px;
       border-radius: 999px;
       font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       border: 1px solid transparent;
       will-change: transform;
     }
-    .btn:hover { transform: translateY(-1px); }
+    .btn:hover { transform: translateY(-2px); }
     .btn-primary {
       background: var(--navy);
       color: #fff;
       box-shadow: 0 16px 34px rgba(15, 28, 46, 0.18);
     }
-    .btn-primary:hover { background: var(--navy-2); }
+    .btn-primary:hover { background: var(--navy-2); box-shadow: 0 20px 40px rgba(15, 28, 46, 0.22); }
     .btn-secondary {
       border-color: rgba(23,34,53,0.12);
       background: rgba(255,255,255,0.55);
@@ -177,6 +205,7 @@
     .btn-secondary:hover {
       border-color: rgba(23,34,53,0.18);
       background: #fff;
+      box-shadow: 0 12px 24px rgba(15, 28, 46, 0.06);
     }
 
     .hero-side {
@@ -187,6 +216,11 @@
       border: 1px solid rgba(23, 34, 53, 0.08);
       box-shadow: var(--shadow-strong);
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hero-side:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 80px rgba(15, 28, 46, 0.15);
     }
     .hero-side::before {
       content: '';
@@ -223,6 +257,12 @@
       border-radius: 16px;
       background: rgba(255,255,255,0.9);
       border: 1px solid rgba(23,34,53,0.08);
+      transition: all 0.2s ease;
+    }
+    .point:hover {
+      background: #fff;
+      border-color: rgba(201,168,76,0.25);
+      transform: translateX(4px);
     }
     .point b {
       display: inline-flex;
@@ -278,13 +318,29 @@
       line-height: 1.06;
       letter-spacing: -0.03em;
       color: var(--navy);
-      max-width: 14ch;
+      max-width: 16ch;
     }
     .section p.section-copy {
       margin: 12px 0 0;
       max-width: 68ch;
       color: var(--muted);
-      font-size: 1.03rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* Chi sono styling */
+    .about-content {
+      max-width: 72ch;
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+    .about-content p {
+      margin: 0 0 16px;
+    }
+    .about-content strong {
+      color: var(--navy);
+      font-weight: 600;
     }
 
     .grid-3,
@@ -299,36 +355,53 @@
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
-      padding: 22px;
+      padding: 24px;
       box-shadow: var(--shadow);
       min-height: 100%;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(15, 28, 46, 0.12);
+      border-color: rgba(201,168,76,0.25);
     }
     .card h3 {
       margin: 0 0 10px;
-      font-size: 1.12rem;
-      line-height: 1.24;
+      font-size: 1.15rem;
+      line-height: 1.25;
       letter-spacing: -0.01em;
       color: var(--navy);
     }
-    .card p { margin: 0; color: var(--muted); }
+    .card p { margin: 0; color: var(--muted); line-height: 1.5; }
     .card .kicker {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       color: var(--gold);
       font-size: 0.82rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      background: rgba(201,168,76,0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
     }
     .callout {
-      margin-top: 18px;
-      padding: 18px 20px;
+      margin-top: 24px;
+      padding: 20px 24px;
       border-radius: var(--radius-sm);
-      background: rgba(15,28,46,0.04);
+      background: rgba(15,28,46,0.03);
       border: 1px solid rgba(15,28,46,0.08);
       color: var(--muted);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .callout::before {
+      content: '🔒';
+      font-size: 1.25rem;
     }
     .callout strong { color: var(--navy); }
 
@@ -338,25 +411,31 @@
     }
     .showcase-item {
       display: grid;
-      grid-template-columns: 180px minmax(0, 1fr);
-      gap: 18px;
-      align-items: start;
-      padding: 18px 20px;
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: 20px;
+      align-items: center;
+      padding: 20px 24px;
       border-radius: var(--radius-sm);
       background: rgba(255,255,255,0.88);
       border: 1px solid rgba(23,34,53,0.08);
-      box-shadow: 0 12px 30px rgba(15,28,46,0.05);
+      box-shadow: 0 12px 30px rgba(15,28,46,0.04);
+      transition: all 0.3s ease;
+    }
+    .showcase-item:hover {
+      background: #fff;
+      transform: translateX(6px);
+      border-color: rgba(201,168,76,0.2);
     }
     .showcase-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       width: fit-content;
-      padding: 7px 11px;
+      padding: 7px 12px;
       border-radius: 999px;
       background: rgba(201,168,76,0.12);
       color: var(--navy);
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -364,47 +443,56 @@
     }
     .showcase-item h3 {
       margin: 0 0 8px;
-      font-size: 1.22rem;
+      font-size: 1.25rem;
       line-height: 1.25;
       color: var(--navy);
       letter-spacing: -0.01em;
     }
     .showcase-item p { margin: 0; color: var(--muted); }
     .showcase-note {
-      color: var(--muted-2);
-      font-size: 0.94rem;
+      color: var(--text);
+      font-size: 0.98rem;
       line-height: 1.55;
-      margin-top: 1px;
+      margin-top: 4px;
     }
 
     .contrast-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 20px;
     }
     .contrast-card {
-      padding: 24px;
+      padding: 28px;
       border-radius: var(--radius-sm);
       background: rgba(255,255,255,0.9);
       border: 1px solid rgba(23,34,53,0.08);
       box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
     }
+    .contrast-card:hover { transform: translateY(-4px); }
     .contrast-card h3 {
-      margin: 0 0 14px;
-      font-size: 1.16rem;
+      margin: 0 0 16px;
+      font-size: 1.2rem;
       color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+    .contrast-card.positive h3::before { content: '✓'; color: #10b981; font-weight: bold; }
+    .contrast-card.negative h3::before { content: '✕'; color: #ef4444; font-weight: bold; }
+    
     .contrast-card ul {
       margin: 0;
       padding-left: 0;
       list-style: none;
       display: grid;
-      gap: 11px;
-      color: var(--muted);
+      gap: 12px;
+      color: var(--text);
     }
     .contrast-card li {
       padding-left: 20px;
       position: relative;
+      line-height: 1.5;
     }
     .contrast-card li::before {
       content: '•';
@@ -419,32 +507,36 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
+      position: relative;
     }
     .step {
-      padding: 20px;
+      padding: 24px 20px;
       border-radius: var(--radius-xs);
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border: 1px solid rgba(23,34,53,0.08);
       box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
     }
+    .step:hover { transform: translateY(-6px); }
     .step-num {
       display: inline-flex;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      margin-bottom: 14px;
-      background: rgba(201,168,76,0.15);
-      color: var(--navy);
+      margin-bottom: 16px;
+      background: var(--navy);
+      color: #fff;
       font-weight: 800;
+      font-size: 1.05rem;
     }
-    .step h3 { margin: 0 0 8px; color: var(--navy); }
-    .step p { margin: 0; color: var(--muted); }
+    .step h3 { margin: 0 0 8px; color: var(--navy); font-size: 1.15rem; }
+    .step p { margin: 0; color: var(--muted); line-height: 1.5; }
 
     .cta {
-      margin: 12px 0 82px;
-      padding: 30px;
+      margin: 20px 0 82px;
+      padding: 40px;
       border-radius: calc(var(--radius) + 2px);
       background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
       color: #f5f1ea;
@@ -472,30 +564,33 @@
     .cta .section-label { color: var(--gold-2); }
     .cta h2 {
       color: #fff;
-      max-width: 16ch;
+      max-width: 18ch;
       margin-left: auto;
       margin-right: auto;
     }
     .cta p {
       margin: 10px auto 0;
       max-width: 64ch;
-      color: rgba(245,241,234,0.80);
-      font-size: 1.02rem;
+      color: rgba(245,241,234,0.85);
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
     .cta-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
+      align-items: center;
       position: relative;
       z-index: 1;
+      margin-top: 8px;
     }
     .cta .btn-primary {
       background: var(--gold);
       color: var(--navy);
       box-shadow: 0 16px 34px rgba(201,168,76,0.18);
     }
-    .cta .btn-primary:hover { background: var(--gold-2); }
+    .cta .btn-primary:hover { background: var(--gold-2); transform: translateY(-2px); }
     .cta .btn-secondary {
       border-color: rgba(245,241,234,0.18);
       background: rgba(255,255,255,0.06);
@@ -520,6 +615,12 @@
       flex-wrap: wrap;
     }
     .footer strong { color: var(--navy); }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a:hover { color: var(--navy); }
 
     .subtle-rule {
       height: 1px;
@@ -528,36 +629,39 @@
     }
 
     @media (max-width: 1060px) {
-      .hero-grid, .showcase-item { grid-template-columns: 1fr; }
+      .hero-grid, .showcase-item { grid-template-columns: 1fr; gap: 32px; }
       .grid-4, .process { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .grid-3, .contrast-grid { grid-template-columns: 1fr; }
       .hero h1 { max-width: none; }
       .section h2 { max-width: none; }
     }
     @media (max-width: 720px) {
-      .header-inner { flex-direction: column; align-items: flex-start; }
-      .nav { justify-content: flex-start; gap: 14px 16px; }
-      .hero { padding-top: 58px; }
-      .hero h1 { font-size: clamp(2.5rem, 14vw, 4rem); }
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .nav { justify-content: flex-start; gap: 14px 16px; width: 100%; }
+      .hero { padding-top: 50px; }
+      .hero h1 { font-size: clamp(2.5rem, 12vw, 3.5rem); }
       .section { padding: 52px 0; }
       .grid-4, .process { grid-template-columns: 1fr; }
-      .cta { padding: 22px; }
+      .cta { padding: 32px 20px; }
       .cta h2 { max-width: none; }
+      .hero-actions, .cta-actions { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Arca homepage">
         <img src="logo.png" alt="Logo Arca">
         <span>Arca</span>
       </a>
       <nav class="nav" aria-label="Navigazione">
+        <a href="#chi-sono">Chi sono</a>
         <a href="#servizi">Servizi</a>
-        <a href="#prove">Prove</a>
         <a href="#metodo">Metodo</a>
-        <a href="#contatti">Contatti</a>
+        <a href="#prove">Prove</a>
         <a class="nav-cta" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota una call</a>
       </nav>
     </div>
@@ -566,12 +670,11 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
+        <div class="animate-fade-up">
           <div class="eyebrow">Consulenza AI · progettazione flussi · AI locale e privata</div>
           <h1>Porto l'AI dentro i processi delle aziende italiane.</h1>
           <p class="lead">
-            Analizzo come lavorate oggi, individuo dove l'AI crea valore reale, progetto i flussi di lavoro e li porto in produzione con il tuo team.
-            Se la privacy conta, disegno anche soluzioni locali o private. L'obiettivo non è vendere un chatbot: è far lavorare meglio l'azienda.
+            Analizzo come lavorate oggi, individuo dove l'AI crea valore reale, progetto i flussi di lavoro e li porto in produzione con il tuo team. Se la privacy conta, disegno anche soluzioni locali o private. L'obiettivo non è vendere un chatbot: è far lavorare meglio l'azienda.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota una call di 30 minuti</a>
@@ -584,17 +687,16 @@
           </div>
         </div>
 
-        <aside class="hero-side">
+        <aside class="hero-side animate-fade-up delay-1">
           <h2>Da dove parto</h2>
           <p>
-            Il valore non sta nel possedere “un agente” in astratto, ma nel capire quali processi automatizzare,
-            quali controlli mettere e come far adottare l'AI a un'azienda vera.
+            Il valore non sta nel possedere “un agente” in astratto, ma nel capire quali processi automatizzare, quali controlli mettere e come far adottare l'AI a un'azienda vera.
           </p>
           <div class="hero-points">
             <div class="point">
               <b>1</b>
               <div>
-                <h3>Processo prima del modello</h3>
+                <h3>Processo prima dello strumento</h3>
                 <span>Capisco dove si perde tempo, dove il rischio è alto e dove l'AI può aiutare subito.</span>
               </div>
             </div>
@@ -621,14 +723,34 @@
       </div>
     </section>
 
-    <section class="section" id="servizi">
+    <section class="section animate-fade-up" id="chi-sono">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Chi sono</div>
+          <h2>Dalla diagnosi alla messa a terra</h2>
+        </div>
+        
+        <div class="about-content">
+          <p>
+            Mi chiamo Pier. Ho costruito Arca perché vedevo le aziende italiane bloccate tra due estremi: da un lato vendor che vendono abbonamenti a software generici, dall'altro grandi società di consulenza che consegnano report teorici a prezzi inaccessibili per le PMI.
+          </p>
+          <p>
+            Il mio approccio unisce i due mondi. Parto dall'analisi dei processi come un consulente, per poi configurare e testare le soluzioni tecnologiche come uno sviluppatore. Ad oggi ho preparato <strong>19 configurazioni agentiche pronte</strong> all'uso e validato questo metodo con oltre <strong>25 realtà aziendali</strong>.
+          </p>
+          <p>
+            Non prometto rivoluzioni aziendali in un giorno. Prometto flussi di lavoro concreti che il team può adottare davvero, partendo da dove c'è più attrito.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section animate-fade-up" id="servizi">
       <div class="container">
         <div class="section-head">
           <div class="section-label">Servizi</div>
           <h2>Cosa faccio per i clienti</h2>
           <p class="section-copy">
-            Arca non è un prodotto da installare e basta. È un lavoro di consulenza, progettazione e messa a terra.
-            Parto dal processo, non dal modello.
+            Arca non è un prodotto da installare e basta. È un lavoro di consulenza, progettazione e messa a terra. Parto dal processo, non dal modello.
           </p>
         </div>
 
@@ -640,7 +762,7 @@
           </article>
           <article class="card">
             <div class="kicker">02 · Progettazione</div>
-            <h3>Strategia e consegna</h3>
+            <h3>Strategia e roadmap</h3>
             <p>Definisco casi d'uso, priorità, indicatori e un flusso concreto: ruoli, input, controlli e strumenti da usare davvero.</p>
           </article>
           <article class="card">
@@ -651,20 +773,20 @@
         </div>
 
         <div class="callout">
-          <strong>Opzione riservata:</strong> quando privacy o controllo contano davvero, progetto ambienti locali o privati.
-          Non è il titolo principale, ma è una leva utile quando il contesto lo richiede.
+          <div>
+            <strong>Opzione riservata:</strong> quando privacy o controllo contano davvero, progetto ambienti AI completamente locali o privati. Non è il titolo principale, ma è una leva tecnica essenziale quando il contesto lo richiede.
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="prove">
+    <section class="section animate-fade-up" id="prove">
       <div class="container">
         <div class="section-head">
           <div class="section-label">Prove</div>
           <h2>Cosa ho già costruito</h2>
           <p class="section-copy">
-            Non arrivo con teoria generica. Ho già costruito infrastruttura, interfacce, flussi di lavoro e materiali per portare l'AI in produzione.
-            Questo è il punto di partenza quando lavoro con un cliente.
+            Non arrivo con teoria generica. Ho già costruito infrastruttura, interfacce, flussi di lavoro e materiali per portare l'AI in produzione. Questo è il punto di partenza quando lavoro con un cliente.
           </p>
         </div>
 
@@ -674,34 +796,27 @@
               <div class="showcase-tag">Sistema</div>
               <h3>Sistema multi-agente e coordinamento</h3>
             </div>
-            <div class="showcase-note">Agenti specializzati, instradamento, automazioni interne e pipeline di lavoro già pronte per essere adattate a casi reali.</div>
+            <div class="showcase-note">Pipeline di agenti specializzati già configurati per estrazione dati, analisi documentale e generazione di bozze, pronti per essere adattati ai vostri documenti.</div>
           </article>
           <article class="showcase-item">
             <div>
               <div class="showcase-tag">Interfaccia</div>
               <h3>Interfaccia per utenti non tecnici</h3>
             </div>
-            <div class="showcase-note">Interfacce pulite, chat, caricamento file, integrazioni e configurazioni pensate per persone che devono lavorare, non studiare strumenti.</div>
+            <div class="showcase-note">Pannelli di controllo chiari, caricamento drag-and-drop e configurazioni pensate per persone che devono lavorare, non studiare il "prompt engineering".</div>
           </article>
           <article class="showcase-item">
             <div>
-              <div class="showcase-tag">Vendita</div>
-              <h3>Proposte e materiali commerciali</h3>
+              <div class="showcase-tag">Integrazione</div>
+              <h3>Integrazione Multi-Canale</h3>
             </div>
-            <div class="showcase-note">Template email, flussi di follow-up, documenti di proposta e materiali per presentare l'offerta in modo chiaro.</div>
-          </article>
-          <article class="showcase-item">
-            <div>
-              <div class="showcase-tag">Contenuti</div>
-              <h3>Presentazioni, PDF e video dimostrativi</h3>
-            </div>
-            <div class="showcase-note">Materiali pensati per mostrare il lavoro fatto e spiegare il valore in modo semplice, senza fumo.</div>
+            <div class="showcase-note">Predisposizione per far interagire i team con l'AI anche tramite i canali che usano già, come WhatsApp, Telegram o flussi Email automatizzati.</div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section animate-fade-up" id="metodo">
       <div class="container">
         <div class="section-head">
           <div class="section-label">Criterio</div>
@@ -712,72 +827,36 @@
         </div>
 
         <div class="contrast-grid">
-          <article class="contrast-card">
+          <article class="contrast-card positive">
             <h3>Fa bene</h3>
             <ul>
-              <li>Riassumere, classificare e riorganizzare informazioni</li>
-              <li>Aiutare con email, documenti e flussi ripetitivi</li>
-              <li>Estrarre dati e preparare bozze operative</li>
+              <li>Riassumere, classificare e riorganizzare grandi volumi di informazioni</li>
+              <li>Aiutare con email, documenti e flussi ripetitivi ad alto volume</li>
+              <li>Estrarre dati specifici e preparare bozze operative da revisionare</li>
               <li>Aiutare un team a lavorare più velocemente con meno attrito</li>
             </ul>
           </article>
-          <article class="contrast-card">
+          <article class="contrast-card negative">
             <h3>Non prometto</h3>
             <ul>
-              <li>Automazione totale senza controllo</li>
-              <li>Soluzioni miracolose che ignorano il processo reale</li>
-              <li>Risultati perfetti al primo colpo</li>
-              <li>Approccio tecnologico quando il problema è organizzativo</li>
+              <li>Automazione totale senza alcun controllo o revisione</li>
+              <li>Soluzioni miracolose che ignorano il processo reale dell'azienda</li>
+              <li>Risultati perfetti al primo colpo senza calibrazione</li>
+              <li>Approccio tecnologico forzato quando il problema è puramente organizzativo</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="metodo">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-label">Metodo</div>
-          <h2>Quattro passi, senza fumo</h2>
-          <p class="section-copy">
-            L'obiettivo è semplice: capire dove l'AI ha impatto, ridurre il rischio di scelte sbagliate e portare risultati misurabili.
-          </p>
-        </div>
-
-        <div class="process">
-          <div class="step">
-            <div class="step-num">1</div>
-            <h3>Diagnosi</h3>
-            <p>Mappo processi, colli di bottiglia, dati disponibili e punti in cui l'AI può aiutare subito.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <h3>Progettazione</h3>
-            <p>Disegno un flusso concreto: ruoli, input, controllo, limiti e strumenti da usare davvero.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <h3>Progetto pilota</h3>
-            <p>Costruisco un primo flusso, lo provo con il team e raccolgo feedback reali prima di scalare.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <h3>Estensione</h3>
-            <p>Formazione, supporto e miglioramento continuo, con la possibilità di introdurre ambienti locali o privati.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
+    <section class="section animate-fade-up">
       <div class="container">
         <div class="subtle-rule"></div>
         <div class="section-head">
           <div class="section-label">Perché Arca</div>
           <h2>Perché questo approccio funziona adesso</h2>
           <p class="section-copy">
-            Il mercato è cambiato. Le aziende non hanno bisogno di un “agente” da mostrare, ma di qualcuno che sappia scegliere cosa adottare,
-            cosa evitare e come farlo funzionare con i vincoli reali di business, privacy e adozione.
+            Il mercato è cambiato. Le aziende non hanno bisogno di un “agente” da mostrare in dashboard, ma di qualcuno che sappia scegliere cosa adottare, cosa evitare e come farlo funzionare con i vincoli reali di business, privacy e adozione.
           </p>
         </div>
 
@@ -785,35 +864,41 @@
           <article class="card">
             <div class="kicker">Esperienza</div>
             <h3>So costruire e so spiegare</h3>
-            <p>Arca unisce lato strategico e lato operativo: dalla diagnosi alla consegna, senza perdere il contatto con il campo.</p>
+            <p>Arca unisce lato strategico e lato operativo: dalla diagnosi alla consegna, scrivendo il codice e parlando con il team senza perdere il contatto con il campo.</p>
           </article>
           <article class="card">
             <div class="kicker">Privacy</div>
             <h3>AI locale e privata senza hype</h3>
-            <p>Quando serve, l'AI può restare dentro l'infrastruttura del cliente. Non è sempre la risposta, ma è spesso una risposta valida.</p>
+            <p>Quando serve, l'AI può restare dentro l'infrastruttura del cliente. Non è sempre la risposta, ma è spesso una risposta valida e sicura.</p>
           </article>
           <article class="card">
             <div class="kicker">Adozione</div>
             <h3>Il focus è farla usare al team</h3>
-            <p>La soluzione giusta è quella che la gente adotta. Per questo il design del flusso conta quanto il modello scelto.</p>
+            <p>La soluzione giusta è quella che la gente adotta veramente. Per questo il design dell'interfaccia e del flusso contano quanto il modello matematico scelto.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contatti">
+    <section class="section animate-fade-up" id="contatti">
       <div class="container cta">
         <div class="cta-inner">
           <div>
-            <div class="section-label">Contatti</div>
+            <div class="section-label">Iniziamo</div>
             <h2>Se vuoi capire dove l'AI può aiutare davvero la tua azienda, parliamone.</h2>
             <p>
-              Ti porto una visione pratica: dove l'AI ha senso, dove no, cosa fare prima e come evitare di sprecare tempo e budget in strumenti inutili.
+              Ti porto una visione pratica: dove l'AI ha senso, dove no, cosa fare prima e come evitare di sprecare tempo e budget in strumenti inutili. Nessun impegno.
             </p>
           </div>
           <div class="cta-actions">
-            <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota la call</a>
-            <a class="btn btn-secondary" href="mailto:pier@arca-ai.it">Scrivimi una mail</a>
+            <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota la call (30 min)</a>
+            <a class="btn btn-secondary" href="https://wa.me/393425680607" target="_blank" rel="noreferrer" style="display: inline-flex; align-items: center; gap: 8px;">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.711.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.614-.087-.112-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"></path>
+              </svg>
+              WhatsApp
+            </a>
+            <a class="btn btn-secondary" href="mailto:pier@arca-ai.it" style="background: transparent; border: 1px solid transparent; text-decoration: underline;">oppure via Email</a>
           </div>
         </div>
       </div>
@@ -823,8 +908,66 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div><strong>Arca</strong> · Consulenza AI per aziende italiane</div>
-      <div>pier@arca-ai.it · WhatsApp +39 342 568 0607</div>
+      <div class="footer-links">
+        <a href="mailto:pier@arca-ai.it">pier@arca-ai.it</a>
+        <a href="https://wa.me/393425680607" target="_blank" rel="noreferrer">WhatsApp: +39 342 568 0607</a>
+        <a href="https://linkedin.com/company/arca" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
     </div>
   </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.animate-fade-up').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // Header scroll effect
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
+  </script>
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Arca",
+    "image": "https://arca-ai.it/logo.png",
+    "description": "Consulenza AI per aziende italiane. Diagnosi, progettazione flussi di lavoro, implementazione e soluzioni locali/private.",
+    "url": "https://arca-ai.it",
+    "telephone": "+393425680607",
+    "email": "pier@arca-ai.it",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IT"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Pier"
+    },
+    "knowsAbout": ["Intelligenza Artificiale", "Automazione Processi", "Consulenza IT", "AI Locale"]
+  }
+  </script>
 </body>
 </html>
