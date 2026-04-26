@@ -19,9 +19,7 @@
   <link rel="icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f7f8fb;
@@ -33,24 +31,15 @@
       --line: #dce4e0;
       --accent: #0f8a5f;
       --accent-dark: #0a6044;
-      --blue: #315c8f;
-      --gold: #b7812d;
       --shadow: 0 18px 44px rgba(19, 32, 27, 0.08);
       --container: 1120px;
       --radius: 8px;
-      --heading: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --body: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --heading: 'Syne', system-ui, sans-serif;
+      --body: 'DM Sans', system-ui, sans-serif;
     }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -59,24 +48,17 @@
       background: var(--bg);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     .container {
       width: min(calc(100% - 32px), var(--container));
       margin: 0 auto;
     }
 
+    /* ── Header ── */
     .site-header {
       position: sticky;
       top: 0;
@@ -87,7 +69,7 @@
     }
 
     .header-inner {
-      min-height: 74px;
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -100,12 +82,13 @@
       gap: 12px;
       color: var(--ink);
       font-weight: 800;
-      letter-spacing: 0;
+      font-family: var(--heading);
+      font-size: 1.1rem;
     }
 
     .brand img {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       object-fit: cover;
       border: 1px solid var(--line);
@@ -114,86 +97,79 @@
     .nav {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 18px;
-      flex-wrap: wrap;
+      gap: 20px;
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.93rem;
       font-weight: 700;
     }
 
-    .nav a:hover {
-      color: var(--ink);
-    }
-
-    .nav-cta,
-    .btn-primary {
-      background: var(--accent);
-      color: #fff !important;
-      border-color: var(--accent);
-    }
+    .nav a:hover { color: var(--ink); }
 
     .nav-cta {
-      padding: 10px 16px;
+      background: var(--accent);
+      color: #fff !important;
+      padding: 10px 18px;
       border-radius: var(--radius);
+      font-weight: 700;
     }
 
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* ── Hero ── */
     .hero {
-      padding: 72px 0 42px;
+      padding: 80px 0 64px;
+      background: #fff;
       border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, #ffffff 0%, #f7f8fb 100%);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-      gap: 34px;
-      align-items: stretch;
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.3;
+      pointer-events: none;
     }
 
-    .eyebrow,
-    .section-label,
-    .kicker,
-    .tag {
-      color: var(--accent-dark);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .hero .container { position: relative; }
 
     .eyebrow {
-      margin-bottom: 18px;
-    }
-
-    h1,
-    h2 {
-      font-family: var(--heading);
-      color: var(--ink);
+      color: var(--accent-dark);
+      font-size: 0.76rem;
       font-weight: 800;
-      letter-spacing: 0;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
     h1 {
+      font-family: var(--heading);
+      color: var(--ink);
+      font-weight: 800;
       margin: 0;
-      max-width: 13ch;
-      font-size: clamp(2.9rem, 6.4vw, 5.5rem);
-      line-height: 0.96;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 0.97;
+      max-width: 14ch;
     }
 
     .lead {
-      margin: 22px 0 0;
-      max-width: 62ch;
+      margin: 24px 0 0;
+      max-width: 56ch;
       color: var(--muted);
-      font-size: 1.08rem;
+      font-size: 1.1rem;
+      line-height: 1.65;
     }
 
-    .hero-actions,
-    .cta-actions {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 28px;
+      margin-top: 32px;
     }
 
     .btn {
@@ -201,308 +177,84 @@
       align-items: center;
       justify-content: center;
       min-height: 48px;
-      padding: 0 18px;
+      padding: 0 20px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      font-weight: 800;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      font-weight: 700;
+      font-size: 0.97rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn-primary { background: var(--accent); color: #fff !important; border-color: var(--accent); }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-secondary { background: #fff; color: var(--ink); }
 
-    .btn-primary:hover {
-      background: var(--accent-dark);
-    }
-
-    .btn-secondary {
-      background: #fff;
-      color: var(--ink);
-    }
-
-    .listing-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .listing-top {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .listing-logo {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-      object-fit: cover;
-      flex: 0 0 auto;
-    }
-
-    .listing-card h2 {
-      margin: 0 0 8px;
-      font-size: 1.65rem;
-      line-height: 1.08;
-    }
-
-    .listing-card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .feature-list {
-      display: grid;
-      gap: 12px;
-      margin: 0;
+    /* ── Trust bar ── */
+    .trust-bar {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-soft);
       padding: 0;
-      list-style: none;
     }
 
-    .feature-list li {
-      display: grid;
-      grid-template-columns: 24px minmax(0, 1fr);
-      gap: 10px;
-      align-items: start;
-      color: var(--text);
-    }
-
-    .feature-list li::before {
-      content: '';
-      width: 10px;
-      height: 10px;
-      margin-top: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .listing-meta {
+    .trust-bar-inner {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
     }
 
-    .meta-item {
-      padding: 12px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: #fbfcfd;
+    .trust-item {
+      padding: 28px 32px;
+      border-right: 1px solid var(--line);
     }
 
-    .meta-item strong {
+    .trust-item:last-child { border-right: none; }
+
+    .trust-item strong {
       display: block;
       color: var(--ink);
-      font-size: 0.95rem;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
-    .meta-item span {
-      display: block;
+    .trust-item span {
       color: var(--muted);
-      font-size: 0.82rem;
-      margin-top: 2px;
+      font-size: 0.93rem;
+      line-height: 1.5;
     }
 
-    .section {
-      padding: 64px 0;
-    }
+    /* ── Section ── */
+    .section { padding: 72px 0; }
 
-    .section-head {
-      margin-bottom: 26px;
+    .section-label {
+      color: var(--accent-dark);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
     }
 
     .section h2 {
-      margin: 8px 0 0;
-      max-width: 21ch;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      line-height: 1.04;
+      font-family: var(--heading);
+      color: var(--ink);
+      font-weight: 800;
+      margin: 10px 0 0;
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      line-height: 1.06;
+      max-width: 22ch;
     }
 
     .section-copy {
       margin: 14px 0 0;
-      max-width: 68ch;
+      max-width: 62ch;
       color: var(--muted);
       font-size: 1.03rem;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
+    .section-head { margin-bottom: 32px; }
 
-    .package-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .card,
-    .package-card,
-    .step,
-    .note {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: 0 12px 30px rgba(19, 32, 27, 0.04);
-    }
-
-    .card {
-      padding: 22px;
-    }
-
-    .package-card {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .package-card.featured {
-      border-color: #afd5c5;
-      background: linear-gradient(180deg, #ffffff 0%, #f2faf6 100%);
-    }
-
-    .card h3,
-    .package-card h3,
-    .step h3 {
-      margin: 10px 0 8px;
-      color: var(--ink);
-      font-size: 1.12rem;
-      line-height: 1.28;
-    }
-
-    .card p,
-    .package-card p,
-    .step p,
-    .note p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .price {
-      color: var(--ink);
-      font-size: 1.38rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .duration {
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
-    .deliverables {
-      display: grid;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      color: var(--text);
-      font-size: 0.94rem;
-    }
-
-    .deliverables li {
-      padding-left: 18px;
-      position: relative;
-    }
-
-    .deliverables li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.72em;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .offer {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: 18px;
-      align-items: start;
-    }
-
-    .offer-panel {
-      background: var(--surface-soft);
-      border: 1px solid #cfe2d8;
-      border-radius: var(--radius);
-      padding: 24px;
-    }
-
-    .offer-panel h3 {
-      margin: 8px 0 10px;
-      color: var(--ink);
-      font-size: 1.35rem;
-    }
-
-    .offer-panel p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .proof-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-      gap: 18px;
-      align-items: start;
-    }
-
-    .proof-panel {
-      padding: 24px;
-      border-radius: var(--radius);
-      background: #172620;
-      color: #fff;
-    }
-
-    .proof-panel h3 {
-      margin: 10px 0 12px;
-      font-size: 1.6rem;
-      line-height: 1.1;
-    }
-
-    .proof-panel p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.74);
-    }
-
-    .proof-list {
-      display: grid;
-      gap: 12px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .proof-list li {
-      padding: 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .proof-list strong {
-      display: block;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .proof-list span {
-      display: block;
-      color: var(--muted);
-    }
-
+    /* ── Process steps ── */
     .process {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -510,148 +262,143 @@
     }
 
     .step {
-      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 4px 18px rgba(19,32,27,0.04);
     }
 
     .step-num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--ink);
       color: #fff;
       font-weight: 800;
+      font-size: 0.88rem;
     }
+
+    .step h3 {
+      margin: 12px 0 8px;
+      color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .step p { margin: 0; color: var(--muted); font-size: 0.96rem; line-height: 1.6; }
 
     .note {
-      margin-top: 18px;
-      padding: 20px;
-      border-left: 4px solid var(--blue);
+      margin-top: 20px;
+      padding: 18px 22px;
+      border-left: 3px solid var(--accent);
+      background: var(--surface);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
+    .note p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+
+    /* ── CTA ── */
+    .cta-section { padding: 72px 0; }
+
     .cta {
-      padding: 42px;
+      padding: 52px 56px;
       border-radius: var(--radius);
       background: var(--ink);
       color: #fff;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 24px;
     }
 
+    .cta .section-label { color: #7ee0ba; }
+
     .cta h2 {
+      font-family: var(--heading);
       color: #fff;
-      margin: 0;
-      max-width: 18ch;
-      font-size: clamp(2.3rem, 4vw, 3.4rem);
-      line-height: 0.98;
+      font-weight: 800;
+      margin: 10px 0 0;
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      line-height: 1.04;
+      max-width: 22ch;
     }
 
     .cta p {
-      margin: 14px 0 0;
-      max-width: 62ch;
-      color: rgba(255, 255, 255, 0.76);
+      margin: 16px 0 0;
+      max-width: 54ch;
+      color: rgba(255,255,255,0.68);
+      font-size: 1.03rem;
+      line-height: 1.65;
     }
 
-    .cta .section-label {
-      color: #7ee0ba;
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
     }
 
     .cta .btn-secondary {
       background: transparent;
-      border-color: rgba(255, 255, 255, 0.24);
+      border-color: rgba(255,255,255,0.25);
       color: #fff;
     }
 
+    .cta .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+    /* ── Footer ── */
     .footer {
-      padding: 28px 0 42px;
+      padding: 24px 0 36px;
       border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.92rem;
     }
 
     .footer-inner {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 16px;
       flex-wrap: wrap;
     }
 
-    .footer strong {
-      color: var(--ink);
+    .footer strong { color: var(--ink); }
+
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .footer-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    .hero .eyebrow     { animation: fadeUp 0.45s ease both; }
+    .hero h1           { animation: fadeUp 0.5s  0.07s ease both; }
+    .hero .lead        { animation: fadeUp 0.5s  0.14s ease both; }
+    .hero .hero-actions{ animation: fadeUp 0.5s  0.21s ease both; }
 
+    /* ── Responsive ── */
     @media (max-width: 960px) {
-
-      .hero-grid,
-      .offer,
-      .proof-grid,
-      .cta {
-        grid-template-columns: 1fr;
-      }
-
-      .grid-3,
-      .package-grid,
-      .process {
-        grid-template-columns: 1fr;
-      }
-
-      h1,
-      .section h2,
-      .cta h2 {
-        max-width: none;
-      }
-
-      .cta-actions {
-        margin-top: 0;
-      }
+      .trust-bar-inner { grid-template-columns: 1fr; }
+      .trust-item { border-right: none; border-bottom: 1px solid var(--line); }
+      .trust-item:last-child { border-bottom: none; }
+      .process { grid-template-columns: 1fr 1fr; }
+      h1, .section h2, .cta h2 { max-width: none; }
     }
 
     @media (max-width: 720px) {
-      .header-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 14px 0;
-      }
-
-      .nav {
-        justify-content: flex-start;
-      }
-
-      .hero {
-        padding-top: 46px;
-      }
-
-      h1 {
-        font-size: clamp(2.8rem, 14vw, 4rem);
-      }
-
-      .listing-meta {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions,
-      .cta-actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .cta {
-        padding: 28px 20px;
-      }
+      .header-inner { flex-direction: column; align-items: flex-start; padding: 14px 0; }
+      h1 { font-size: clamp(2.6rem, 13vw, 3.6rem); }
+      .hero { padding: 52px 0 48px; }
+      .hero-actions, .cta-actions { flex-direction: column; width: 100%; }
+      .btn { width: 100%; text-align: center; }
+      .process { grid-template-columns: 1fr; }
+      .cta { padding: 32px 22px; }
     }
   </style>
 </head>
@@ -659,15 +406,12 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Homepage Arca">
+      <a class="brand" href="#top" aria-label="Arca homepage">
         <img src="logo.png" alt="Logo Arca">
         <span>Arca</span>
       </a>
       <nav class="nav" aria-label="Navigazione principale">
-        <a href="#servizi">Servizi</a>
-        <a href="#pacchetti">Pacchetti</a>
-        <a href="#esecuzione">Esecuzione</a>
-        <a href="#metodo">Metodo</a>
+        <a href="#metodo">Come lavoro</a>
         <a href="#contatti">Contatti</a>
         <a class="nav-cta" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota una call</a>
       </nav>
@@ -675,188 +419,48 @@
   </header>
 
   <main id="top">
+
+    <!-- HERO -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Consulenza AI per aziende, professionisti e team</div>
-          <h1>AI utile nei processi, non nelle slide.</h1>
-          <p class="lead">
-            Ti aiuto a capire dove l'AI può far risparmiare tempo, scegliere gli strumenti giusti e costruire un primo
-            workflow operativo: semplice, controllabile e usabile dal team.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank"
-              rel="noreferrer">Prenota una call di 30 minuti</a>
-            <a class="btn btn-secondary" href="#servizi">Scopri i servizi</a>
-          </div>
-        </div>
-
-        <aside class="listing-card" aria-label="Scheda servizio Arca">
-          <div>
-            <div class="listing-top">
-              <img class="listing-logo" src="logo.png" alt="">
-              <div>
-                <div class="tag">Arca · Consulenza operativa</div>
-                <h2>Diagnosi, roadmap e primo pilota operativo</h2>
-                <p>Partiamo dal processo, non dallo strumento. Il risultato è un primo workflow utile, controllabile e spiegato al team.</p>
-              </div>
-            </div>
-          </div>
-
-          <ul class="feature-list">
-            <li>Analisi dei processi: email, documenti, ricerca, riunioni e coordinamento interno.</li>
-            <li>Un primo workflow con passaggi chiari, controllo umano e criteri di qualità.</li>
-            <li>Strumenti, automazioni e assistenti scelti solo quando servono al risultato.</li>
-            <li>Cloud, privato o locale: la scelta tecnica arriva dopo la diagnosi.</li>
-          </ul>
-
-          <div class="listing-meta" aria-label="Informazioni servizio">
-            <div class="meta-item">
-              <strong>Ingresso</strong>
-              <span>Audit AI</span>
-            </div>
-            <div class="meta-item">
-              <strong>Output</strong>
-              <span>Workflow</span>
-            </div>
-            <div class="meta-item">
-              <strong>Extra</strong>
-              <span>Adozione</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="servizi">
       <div class="container">
-        <div class="section-head">
-          <div class="section-label">Servizi</div>
-          <h2>Consulenza AI operativa, dalla diagnosi al pilota</h2>
-          <p class="section-copy">
-            Arca non vende un software generico. Ti aiuta a capire dove l'AI è utile, scegliere un caso prioritario e
-            portarlo in operatività con istruzioni chiare per il team.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="kicker">Diagnosi</div>
-            <h3>Audit AI dei processi</h3>
-            <p>Mappo processi, documenti, strumenti e attività ripetitive. Mettiamo in fila opportunità concrete, rischi e limiti prima di scegliere cosa fare.</p>
-          </article>
-          <article class="card">
-            <div class="kicker">Progetto</div>
-            <h3>Workflow e priorità</h3>
-            <p>Definisco input, passaggi, controlli, responsabilità e strumenti. L'obiettivo è un processo più semplice, non una demo tecnica.</p>
-          </article>
-          <article class="card">
-            <div class="kicker">Delivery</div>
-            <h3>Pilota, training e adozione</h3>
-            <p>Implemento un primo caso d'uso, lo testiamo con chi lo userà davvero e preparo training, documentazione e supporto iniziale.</p>
-          </article>
+        <div class="eyebrow">Consulenza AI operativa · Italia</div>
+        <h1>Aiuto aziende e professionisti a usare l'AI in modo efficiente, sicuro e su attività che vale davvero la pena automatizzare.</h1>
+        <p class="lead">
+          Parto sempre dalla diagnosi: guardo come lavorate, trovo dove l'AI può togliere lavoro ripetitivo, scelgo un caso concreto e lo costruisco con chi lo userà. Se non c'è niente che vale la pena fare, lo dico prima di cominciare.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Parliamone — 30 minuti</a>
+          <a class="btn btn-secondary" href="#metodo">Come lavoro</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="pacchetti">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-label">Pacchetti</div>
-          <h2>Percorsi modulari, definiti sul caso reale</h2>
-          <p class="section-copy">
-            Non sono listini rigidi. Sono punti di ingresso: tempi e investimento si definiscono dopo aver capito processo, dati, persone coinvolte e livello di implementazione necessario.
-          </p>
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+      <div class="container trust-bar-inner">
+        <div class="trust-item">
+          <strong>La diagnosi vale più dell'implementazione.</strong>
+          <span>La maggior parte degli errori AI si fanno prima di scrivere un prompt. Parto sempre da lì.</span>
         </div>
-
-        <div class="package-grid">
-          <article class="package-card">
-            <div class="kicker">Entry</div>
-            <h3>AI Diagnostic</h3>
-            <div class="price">Diagnosi mirata</div>
-            <div class="duration">per capire dove partire</div>
-            <ul class="deliverables">
-              <li>Processi e attività prioritarie</li>
-              <li>Opportunità AI ordinate per impatto e fattibilità</li>
-              <li>Rischi, limiti, strumenti consigliati e prossimi passi</li>
-            </ul>
-          </article>
-          <article class="package-card featured">
-            <div class="kicker">Core</div>
-            <h3>Workflow Design</h3>
-            <div class="price">Workflow su misura</div>
-            <div class="duration">per progettare processo, ruoli e strumenti</div>
-            <ul class="deliverables">
-              <li>Roadmap dei casi d'uso prioritari</li>
-              <li>Procedure, prompt e template operativi</li>
-              <li>Scelta strumenti, ruoli e regole di controllo</li>
-            </ul>
-          </article>
-          <article class="package-card">
-            <div class="kicker">Delivery</div>
-            <h3>Pilot Implementation</h3>
-            <div class="price">Pilota operativo</div>
-            <div class="duration">per testarlo con il team</div>
-            <ul class="deliverables">
-              <li>Primo workflow AI funzionante</li>
-              <li>Test con utenti reali e correzioni</li>
-              <li>Training, documentazione essenziale e handover</li>
-            </ul>
-          </article>
-          <article class="package-card">
-            <div class="kicker">Speciale</div>
-            <h3>Private / Local AI</h3>
-            <div class="price">Setup dedicato</div>
-            <div class="duration">quando servono privacy e controllo</div>
-            <ul class="deliverables">
-              <li>Setup locale o ambiente privato</li>
-              <li>Accesso via web, email, Telegram o WhatsApp se utile</li>
-              <li>Supporto e aggiornamenti opzionali</li>
-            </ul>
-          </article>
+        <div class="trust-item">
+          <strong>Scelgo un caso, non faccio liste.</strong>
+          <span>La prima domanda non è "cosa possiamo fare con l'AI" — è "cosa vale la pena fare adesso". Di solito è una cosa sola.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Il lavoro finisce quando non hai più bisogno di me.</strong>
+          <span>Non quando la demo funziona. Quando il tuo team usa lo strumento da solo.</span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="section" id="esecuzione">
-      <div class="container proof-grid">
-        <div class="proof-panel">
-          <div class="section-label">Esecuzione</div>
-          <h3>Non parto dalla teoria: porto basi operative già pronte da adattare al tuo caso.</h3>
-          <p>
-            Uso workflow, template, interfacce e materiali di consegna già testati come base di partenza. Poi li adatto
-            al processo reale, ai vincoli e alle persone che dovranno usarli.
-          </p>
-        </div>
-
-        <ul class="proof-list">
-          <li>
-            <strong>Template per workflow e assistenti</strong>
-            <span>Basi già pronte per ricerca, bozze, preventivi, follow-up, report, riunioni, PDF e fogli di calcolo.</span>
-          </li>
-          <li>
-            <strong>Interfacce semplici per utenti non tecnici</strong>
-            <span>Pannelli web e procedure guidate per usare l'AI senza dover imparare strumenti complessi.</span>
-          </li>
-          <li>
-            <strong>Canali operativi quando servono</strong>
-            <span>Web, email, Telegram o WhatsApp: l'AI entra dove il team lavora già, solo se questo semplifica il processo.</span>
-          </li>
-          <li>
-            <strong>Consegna e adozione</strong>
-            <span>Onboarding, documentazione breve e supporto iniziale per passare dal pilota all'uso quotidiano.</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
+    <!-- COME LAVORO -->
     <section class="section" id="metodo">
       <div class="container">
         <div class="section-head">
-          <div class="section-label">Metodo</div>
-          <h2>Dal primo caso d'uso all'adozione</h2>
+          <div class="section-label">Come lavoro</div>
+          <h2>Come si svolge il lavoro.</h2>
           <p class="section-copy">
-            Un percorso breve, concreto e verificabile.
+            Un progetto compatto e definito: una diagnosi, un caso d'uso scelto insieme, qualcosa in produzione. Niente che rimanga sulla carta.
           </p>
         </div>
 
@@ -864,87 +468,53 @@
           <article class="step">
             <div class="step-num">1</div>
             <h3>Diagnosi</h3>
-            <p>Raccolgo obiettivi, strumenti attuali, vincoli, dati disponibili e lavoro ripetitivo.</p>
+            <p>Guardo come lavorate davvero — email, documenti, riunioni, strumenti in uso. Trovo dove si perde più tempo e perché. Si esce con una priorità chiara, non con un elenco di possibilità.</p>
           </article>
           <article class="step">
             <div class="step-num">2</div>
             <h3>Scelta</h3>
-            <p>Scegliamo il caso d'uso con miglior rapporto tra impatto, semplicità e rischio.</p>
+            <p>Scelgo con te un caso d'uso: quello con il miglior rapporto tra impatto e rischio basso. Solo uno, perché è così che si impara se funziona davvero.</p>
           </article>
           <article class="step">
             <div class="step-num">3</div>
-            <h3>Setup</h3>
-            <p>Configuro strumenti, prompt, template, automazioni o assistenti, mantenendo sempre il controllo umano.</p>
+            <h3>Configurazione</h3>
+            <p>Configuro strumenti, prompt e automazioni sul lavoro reale. Il team li prova nell'attività ordinaria — non in una sessione dedicata lontana dalla realtà quotidiana.</p>
           </article>
           <article class="step">
             <div class="step-num">4</div>
-            <h3>Adozione</h3>
-            <p>Alleno il team, raccolgo feedback e consegno istruzioni essenziali per usare il workflow in modo corretto.</p>
+            <h3>Consegna</h3>
+            <p>Raccolgo feedback, faccio le correzioni e lascio una documentazione breve. Il test che conta: gli strumenti restano in uso quando me ne sono andato.</p>
           </article>
         </div>
 
         <div class="note">
-          <p>
-            Quando privacy, dati sensibili o controllo interno contano davvero, valuto anche soluzioni locali o private.
-            Quando non servono, evito complessità inutile e parto dagli strumenti migliori per qualità, prezzo e velocità.
-          </p>
+          <p>Se il lavoro coinvolge dati sensibili o documenti riservati, valuto soluzioni locali o private. Altrimenti uso gli strumenti più adatti al caso — senza aggiungere complessità inutile.</p>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <!-- CTA -->
+    <section class="cta-section" id="contatti">
       <div class="container">
-        <div class="section-head">
-          <div class="section-label">Ambiti</div>
-          <h2>Dove ha più senso partire</h2>
-          <p class="section-copy">
-            I primi progetti funzionano quando partono da lavoro ripetitivo, materiale già disponibile e controllo
-            umano chiaro.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="kicker">Per aziende</div>
-            <h3>Consulenza AI per processi interni</h3>
-            <p>Analisi dei flussi, automazione documentale, reportistica e supporto all'adozione nei processi interni.</p>
-          </article>
-          <article class="card">
-            <div class="kicker">Per professionisti</div>
-            <h3>AI per studio, ricerca e produttività</h3>
-            <p>Template, prompt, archivi, sintesi e bozze per lavorare meglio con clienti, pratiche e materiali.</p>
-          </article>
-          <article class="card">
-            <div class="kicker">Per team</div>
-            <h3>Formazione AI pratica</h3>
-            <p>Sessioni operative su casi reali e regole pratiche per evitare uso casuale, errori ripetuti e sprechi di tempo.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contatti">
-      <div class="container cta">
-        <div>
-          <div class="section-label">Contatti</div>
-          <h2>Partiamo da un processo concreto.</h2>
+        <div class="cta">
+          <div class="section-label">Parliamo</div>
+          <h2>Hai venti minuti? Ti dico quello che penso.</h2>
           <p>
-            Prenota una call: capiamo dove sei, quale risultato cercare per primo e quale workflow può ridurre lavoro
-            ripetitivo senza complicare l'operatività.
+            Mi racconti come lavorate, io faccio domande. Alla fine ti dico se secondo me c'è qualcosa da fare e da dove partirei. Nessun impegno, nessuna proposta commerciale nella stessa call.
           </p>
-        </div>
-        <div class="cta-actions">
-          <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank"
-            rel="noreferrer">Prenota una call di 30 minuti</a>
-          <a class="btn btn-secondary" href="https://wa.me/393425680607" target="_blank" rel="noreferrer">WhatsApp</a>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="https://calendly.com/arcalocalai/30min" target="_blank" rel="noreferrer">Prenota una call</a>
+            <a class="btn btn-secondary" href="https://wa.me/393425680607" target="_blank" rel="noreferrer">Scrivimi su WhatsApp</a>
+          </div>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div><strong>Arca</strong> · Consulenza AI operativa per aziende italiane</div>
+      <strong>Arca</strong>
       <div class="footer-links">
         <a href="mailto:pier@arca-ai.it">pier@arca-ai.it</a>
         <a href="https://wa.me/393425680607" target="_blank" rel="noreferrer">+39 342 568 0607</a>
@@ -966,56 +536,26 @@
         "telephone": "+393425680607",
         "email": "pier@arca-ai.it",
         "priceRange": "Su preventivo",
-        "areaServed": {
-          "@type": "Country",
-          "name": "Italia"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "IT"
-        },
-        "founder": {
-          "@type": "Person",
-          "name": "Pier"
-        },
-        "knowsAbout": [
-          "Consulenza AI",
-          "Automazione dei processi",
-          "Assistenti AI",
-          "GPT per aziende",
-          "Formazione AI",
-          "Modelli locali"
-        ]
+        "areaServed": { "@type": "Country", "name": "Italia" },
+        "address": { "@type": "PostalAddress", "addressCountry": "IT" },
+        "founder": { "@type": "Person", "name": "Pier" },
+        "knowsAbout": ["Consulenza AI", "Automazione dei processi", "Assistenti AI", "GPT per aziende", "Formazione AI", "Modelli locali"]
       },
       {
         "@type": "Service",
         "@id": "https://arca-ai.it/#service",
         "name": "Consulenza AI operativa per aziende italiane",
         "serviceType": "Consulenza AI operativa",
-        "provider": {
-          "@id": "https://arca-ai.it/#business"
-        },
+        "provider": { "@id": "https://arca-ai.it/#business" },
         "areaServed": "Italia",
         "description": "Setup guidato di strumenti AI, workflow, template e automazioni leggere per rendere l'intelligenza artificiale utile nel lavoro quotidiano.",
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Pacchetti consulenza AI Arca",
           "itemListElement": [
-            {
-              "@type": "Offer",
-              "name": "AI Diagnostic",
-              "description": "Diagnosi iniziale dei processi e delle opportunità AI"
-            },
-            {
-              "@type": "Offer",
-              "name": "Workflow Design",
-              "description": "Progettazione del primo workflow operativo"
-            },
-            {
-              "@type": "Offer",
-              "name": "Pilot Implementation",
-              "description": "Implementazione guidata di un primo pilota AI"
-            }
+            { "@type": "Offer", "name": "AI Diagnostic", "description": "Diagnosi iniziale dei processi e delle opportunità AI" },
+            { "@type": "Offer", "name": "Workflow Design", "description": "Progettazione del primo workflow operativo" },
+            { "@type": "Offer", "name": "Pilot Implementation", "description": "Implementazione guidata di un primo pilota AI" }
           ]
         }
       },
