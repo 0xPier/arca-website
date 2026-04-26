@@ -117,7 +117,7 @@
 
     /* ── Hero ── */
     .hero {
-      padding: 80px 0 64px;
+      padding: 64px 0 48px;
       background: #fff;
       border-bottom: 1px solid var(--line);
       position: relative;
@@ -144,7 +144,7 @@
       font-weight: 800;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     h1 {
@@ -152,24 +152,24 @@
       color: var(--ink);
       font-weight: 800;
       margin: 0;
-      font-size: clamp(3rem, 6vw, 5.2rem);
-      line-height: 0.97;
-      max-width: 14ch;
+      font-size: clamp(2.35rem, 4.5vw, 4.25rem);
+      line-height: 1.02;
+      max-width: 18ch;
     }
 
     .lead {
-      margin: 24px 0 0;
-      max-width: 56ch;
+      margin: 18px 0 0;
+      max-width: 50ch;
       color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.65;
+      font-size: 1.02rem;
+      line-height: 1.58;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
+      gap: 10px;
+      margin-top: 24px;
     }
 
     .btn {
@@ -204,7 +204,7 @@
     }
 
     .trust-item {
-      padding: 28px 32px;
+      padding: 20px 24px;
       border-right: 1px solid var(--line);
     }
 
@@ -225,7 +225,7 @@
     }
 
     /* ── Section ── */
-    .section { padding: 72px 0; }
+    .section { padding: 60px 0; }
 
     .section-label {
       color: var(--accent-dark);
@@ -240,16 +240,16 @@
       color: var(--ink);
       font-weight: 800;
       margin: 10px 0 0;
-      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
-      line-height: 1.06;
-      max-width: 22ch;
+      font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+      line-height: 1.07;
+      max-width: 20ch;
     }
 
     .section-copy {
       margin: 14px 0 0;
-      max-width: 62ch;
+      max-width: 58ch;
       color: var(--muted);
-      font-size: 1.03rem;
+      font-size: 0.98rem;
     }
 
     .section-head { margin-bottom: 32px; }
@@ -258,14 +258,14 @@
     .process {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
+      gap: 12px;
     }
 
     .step {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 22px;
+      padding: 18px;
       box-shadow: 0 4px 18px rgba(19,32,27,0.04);
     }
 
@@ -283,14 +283,14 @@
     }
 
     .step h3 {
-      margin: 12px 0 8px;
+      margin: 10px 0 6px;
       color: var(--ink);
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       font-weight: 700;
       line-height: 1.2;
     }
 
-    .step p { margin: 0; color: var(--muted); font-size: 0.96rem; line-height: 1.6; }
+    .step p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
 
     .note {
       margin-top: 20px;
@@ -306,10 +306,10 @@
     .note p { margin: 0; color: var(--muted); font-size: 0.96rem; }
 
     /* ── CTA ── */
-    .cta-section { padding: 72px 0; }
+    .cta-section { padding: 60px 0; }
 
     .cta {
-      padding: 52px 56px;
+      padding: 40px 44px;
       border-radius: var(--radius);
       background: var(--ink);
       color: #fff;
@@ -322,17 +322,17 @@
       color: #fff;
       font-weight: 800;
       margin: 10px 0 0;
-      font-size: clamp(2rem, 3.5vw, 2.9rem);
-      line-height: 1.04;
-      max-width: 22ch;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.06;
+      max-width: 20ch;
     }
 
     .cta p {
-      margin: 16px 0 0;
-      max-width: 54ch;
+      margin: 14px 0 0;
+      max-width: 52ch;
       color: rgba(255,255,255,0.68);
-      font-size: 1.03rem;
-      line-height: 1.65;
+      font-size: 0.98rem;
+      line-height: 1.58;
     }
 
     .cta-actions {
@@ -393,12 +393,12 @@
 
     @media (max-width: 720px) {
       .header-inner { flex-direction: column; align-items: flex-start; padding: 14px 0; }
-      h1 { font-size: clamp(2.6rem, 13vw, 3.6rem); }
-      .hero { padding: 52px 0 48px; }
+      h1 { font-size: clamp(2.15rem, 11vw, 3.1rem); }
+      .hero { padding: 40px 0 36px; }
       .hero-actions, .cta-actions { flex-direction: column; width: 100%; }
       .btn { width: 100%; text-align: center; }
       .process { grid-template-columns: 1fr; }
-      .cta { padding: 32px 22px; }
+      .cta { padding: 28px 20px; }
     }
   </style>
 </head>
